@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('hello-angu app is running!');
+    expect(page.getTitleText()).toEqual('Planilha app is running!');
   });
 
   afterEach(async () => {
