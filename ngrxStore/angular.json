@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "ngrxFire": {
+    "ngrxStore": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngrxFire",
+            "outputPath": "dist/ngrxStore",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngrxFire:build"
+            "browserTarget": "ngrxStore:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngrxFire:build:production"
+              "browserTarget": "ngrxStore:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngrxFire:build"
+            "browserTarget": "ngrxStore:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngrxFire:serve"
+            "devServerTarget": "ngrxStore:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngrxFire:serve:production"
+              "devServerTarget": "ngrxStore:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ngrxFire"
+  "defaultProject": "ngrxStore"
 }
