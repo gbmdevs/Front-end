@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { FiArrowDownLeft }     from 'react-icons/fi';
+import { FiArrowLeft }     from 'react-icons/fi';
 
 import './style.css';
 // Imagens
@@ -17,7 +17,7 @@ export default function Register(){
                      a encontrar casos da sua Ong.
                   </p>
                   <Link to="/" className="backlink">
-                    <FiArrowDownLeft size={16} color="#E02041" />   Voltar para o Logon
+                    <FiArrowLeft size={16} color="#E02041" />   Voltar para o Logon
                   </Link>
                 
                 </section>
