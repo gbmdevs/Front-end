@@ -2,6 +2,9 @@ import React  from 'react'
 import { Link } from 'react-router-dom';
 import { FiPower , FiTrash2 } from 'react-icons/fi';
 
+// Axios
+import api from '../../services/api';
+
 import './style.css';
 
 // Imagens
@@ -9,8 +12,23 @@ import LogoImg from '../../assets/logo.svg';
 
 
 export default function Profile(){
+     
+    async function handleEvent(e){
+      e.preventDefault();
+      
+      const response = await api.get('ongs');
+      
+      /*
+      response.data.map(data => {
+         console.log(data.id);
+      }) ; */
+      
+       
+       
+    }
+
     return( 
-       <div className="profile-container">
+       <div className="profile-container" >
            <header>
               <img src={LogoImg} alt="Be the Hero" />
               <span>Bem vinda, APAD</span>
@@ -22,7 +40,7 @@ export default function Profile(){
            </header>
 
        <h1>Casos Cadastrados</h1>    
-       <ul>
+       <ul> 
            <li>
                <strong>Caso:</strong>
                <p>Caso teste</p>

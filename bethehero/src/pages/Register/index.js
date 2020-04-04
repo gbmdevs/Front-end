@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft }     from 'react-icons/fi';
 
 // AXIOS
@@ -18,6 +18,7 @@ export default function Register(){
     const [city     , setCity]     = useState(''); 
     const [uf       , setUf]       = useState(''); 
     
+    const history =  useHistory();
     async function handleEvent(e){ 
      // Evita o Recarregamento de Pagina - Estudar Depois! 
         e.preventDefault();
@@ -33,6 +34,7 @@ export default function Register(){
       try{
          const response = await api.post('ongs', data); 
          alert(`Seu ID de acesso é: ${response.data.id}` ); 
+         history.push('/');
       }catch(err) {
           console.log(err);
          alert('Errp no cadastro, tente novamente!');
