@@ -1,12 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link , useHistory } from 'react-router-dom';
 import { FiArrowLeft} from 'react-icons/fi';
 
+//Axios api para requisição
+//import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg'
 import './style.css';
 
 export default function NewIncident(){
+     const [title , setTitle ]            = useState('');
+     const [description, setDescription]  = useState('');
+     const history  = useHistory();
+   
+    function handleEvent(e){
+      e.preventDefault();
+      
+      const data = [ 
+        title,
+        description
+      ];
+
+      console.log(data);
+      history.push('/profile');
+
+    }
+  
     return(       
     <div className="new-incident">
     <div className="content">
@@ -23,9 +42,16 @@ export default function NewIncident(){
         
         </section>
         
-        <form>
-             <input placeholder="Titulo do Caso" />
-             <textarea placeholder="Descrição" />
+        <form onSubmit={handleEvent}>
+             <input placeholder="Titulo do Caso" 
+               value = {title}
+               onChange = {e => setTitle(e.target.value)}
+             />
+             <textarea placeholder="Descrição" 
+               value = {title}
+               onChange = {e => setDescription(e.target.value)}
+             
+             />
              <input placeholder="Valor em Reais" />       
              <button type="submit" className="button">Cadastrar</button> 
         </form>
