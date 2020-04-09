@@ -32,12 +32,13 @@ export default function Register(){
      
     // Area de Requisição POST - /ongs
       try{
+        console.log(data);
          const response = await api.post('ongs', data); 
          alert(`Seu ID de acesso é: ${response.data.id}` ); 
          history.push('/');
       }catch(err) {
           console.log(err);
-         alert('Errp no cadastro, tente novamente!');
+         alert('Erro no cadastro, tente novamente!');
       }
 
    }

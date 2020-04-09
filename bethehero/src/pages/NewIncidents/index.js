@@ -3,26 +3,40 @@ import { Link , useHistory } from 'react-router-dom';
 import { FiArrowLeft} from 'react-icons/fi';
 
 //Axios api para requisição
-//import api from '../../services/api';
+import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg'
 import './style.css';
 
 export default function NewIncident(){
-     const [title , setTitle ]            = useState('');
+     const [title , setTitle ]            = useState(''); 
      const [description, setDescription]  = useState('');
-     const history  = useHistory();
-   
-    function handleEvent(e){
+     const [value, setValue]              = useState('');
+     const history   = useHistory();
+     const ongId     = localStorage.getItem('ongID');
+
+   async function handleEvent(e){
       e.preventDefault();
       
-      const data = [ 
+      const data = {
         title,
-        description
-      ];
+        description,
+        value
+      };
 
-      console.log(data);
-      history.push('/profile');
+      console.log(data,ongId);
+      try{
+        await api.post('incidents',data, {
+          headers: { 
+            Authorization: ongId
+          }
+        });
+        alert('Incidente Cadastrado com Sucesso!');
+        history.push('/profile');
+      }catch(err){
+        alert('Erro ao cadastrar Incidente!');
+      }
+      
 
     }
   
@@ -48,11 +62,14 @@ export default function NewIncident(){
                onChange = {e => setTitle(e.target.value)}
              />
              <textarea placeholder="Descrição" 
-               value = {title}
+               value = {description}
                onChange = {e => setDescription(e.target.value)}
              
              />
-             <input placeholder="Valor em Reais" />       
+             <input placeholder="Valor em Reais" 
+               value = { value }
+               onChange = { e => setValue(e.target.value)}
+             />       
              <button type="submit" className="button">Cadastrar</button> 
         </form>
     </div>

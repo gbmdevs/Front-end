@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPower , FiTrash2 } from 'react-icons/fi';
 
 // Axios
@@ -16,7 +16,7 @@ export default function Profile(){
     const [ incidents , setIncidents] = useState([]);
     const ongName = localStorage.getItem('ongName');   
     const ongId   = localStorage.getItem('ongID');
-    
+    const history = useHistory();
  // Estudar essa Parte abaixo   
     useEffect(() => {
        api.get('profile', {
@@ -27,6 +27,27 @@ export default function Profile(){
                setIncidents(response.data); 
     })
    }, [ongId]);
+   
+
+   async function handleDeleteEvent(id){
+       try { 
+          await api.delete(`/incidents/${id}`,{
+             headers: {
+               Authorization: ongId,
+             }
+          });
+
+          // Retirar ele da Lista
+          setIncidents(incidents.filter(incident => incident.id !== id));
+       }  catch(err){
+          alert('Falha ao Deletar Registro da Tabela!');
+       }   
+   }
+    
+   function handleLogout(){
+      localStorage.clear();
+      history.push('/');
+   }
 
     return( 
        <div className="profile-container" >
@@ -35,7 +56,7 @@ export default function Profile(){
               <span>Bem vinda, {ongName} </span>
               <Link className="button" 
                  to="/incidents/new">Cadastrar novo caso</Link>
-              <button type="button">
+              <button type="button" onClick={handleLogout}>
                   <FiPower size={18} color="#E02041" />
               </button>
            </header>
@@ -49,8 +70,10 @@ export default function Profile(){
                  <strong>Descrição</strong>
                    <p>{index.description}</p>
                  <strong>Valor</strong>
-                   <p>R$ {index.value}</p>
-                 <button type="button">
+                   <p>{Intl.NumberFormat('pt-BR',{
+                      style: 'currency', currency: 'BRL'
+                   }).format(index.value)}</p>
+                 <button onClick= { () => handleDeleteEvent(index.id)} type="button">
                    <FiTrash2 size={20} color="#a8a8b3" />
                  </button>
               </li>  
