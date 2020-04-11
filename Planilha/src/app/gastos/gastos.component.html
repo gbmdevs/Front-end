@@ -1,0 +1,15 @@
+<table border="1">
+    <thead></thead>
+    <tr>
+      <th>ID</th>
+      <th>Descrição</th>
+      <th>Value</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let index of gastos">
+            <td>{{index.id}}</td> 
+            <td>{{index.spentDescription}}</td>
+            <td>{{index.spentValue}}</td>
+        </tr>
+    </tbody>
+  </table>
