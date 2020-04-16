@@ -6,6 +6,7 @@
       <th>Descrição</th>
       <th>Valor</th>
       <th>Tipo de Gasto</th>
+      <th>Data do Gastos</th>
     </tr>
     <tbody>
         <tr *ngFor="let index of gastos['spents']">
@@ -13,6 +14,7 @@
             <td>{{index.spentDescription}}</td>
             <td>{{index.spentValue}}</td>
             <td>{{index.cdIdSpent}}</td>
+            <td>{{index.dateSpent}}</td>
         </tr>
     </tbody>
   </table>
