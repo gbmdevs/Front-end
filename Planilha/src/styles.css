@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    padding: 0; 
+}
+
+tbody td{
+  text-align: center;
+  padding: 08px;
+}
+tbody { 
+    padding-left: 4px;
+}
+
+h3{
+    text-align: center;
+}
+
+tr th{
+    background-color: black;
+    color: aliceblue;
+}

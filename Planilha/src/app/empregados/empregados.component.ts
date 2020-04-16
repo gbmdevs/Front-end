@@ -14,6 +14,7 @@ export class EmpregadosComponent implements OnInit {
  // private REST_API_SERVIDOR = "http://172.20.0.6:8080/Planilha/"; 
   private REST_API_SERVIDOR = "http://localhost:8080/Planilha/gastos"; 
   empregados:string[]; 
+  totalSalaryAcc:number;
   postData = {
      test: 'my content',
   };

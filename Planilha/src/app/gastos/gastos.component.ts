@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class GastosComponent implements OnInit {
    
    private REST_API_HOST = "http://localhost:8080/Planilha/gastos";
-   gastos:string[];
-
+   gastos = [];
+   
 
   constructor( private httpClient : HttpClient) { }
 
@@ -19,7 +19,7 @@ export class GastosComponent implements OnInit {
      await this.httpClient.get(this.REST_API_HOST)
          .subscribe(( data: any[]) => {
              this.gastos = data;
-             console.log(this.gastos);
+             console.log(this.gastos); 
          }); 
   }
 

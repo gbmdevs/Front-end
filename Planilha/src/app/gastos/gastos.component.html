@@ -1,15 +1,18 @@
 <table border="1">
     <thead></thead>
+    <h3>Total em Conta: {{gastos["totalSalaAcc"]}} </h3>
     <tr>
       <th>ID</th>
       <th>Descrição</th>
-      <th>Value</th>
+      <th>Valor</th>
+      <th>Tipo de Gasto</th>
     </tr>
     <tbody>
-        <tr *ngFor="let index of gastos">
+        <tr *ngFor="let index of gastos['spents']">
             <td>{{index.id}}</td> 
             <td>{{index.spentDescription}}</td>
             <td>{{index.spentValue}}</td>
+            <td>{{index.cdIdSpent}}</td>
         </tr>
     </tbody>
   </table>
