@@ -1,6 +1,7 @@
 <table border="1">
     <thead></thead>
-    <h3>Total em Conta: {{gastos["totalSalaAcc"]}} </h3>
+    <h3>Total em Conta: {{gastos["totalSalaAcc" ] | currency:"BRL"}} </h3> <br>
+    <h3>Total Livre : {{gastos["totalSalaryFree"] | currency:"BRL"}}</h3>
     <tr>
       <th>ID</th>
       <th>Descrição</th>
@@ -12,9 +13,27 @@
         <tr *ngFor="let index of gastos['spents']">
             <td>{{index.id}}</td> 
             <td>{{index.spentDescription}}</td>
-            <td>{{index.spentValue}}</td>
+            <td>{{index.spentValue | currency:"BRL"}}</td>
             <td>{{index.cdIdSpent}}</td>
-            <td>{{index.dateSpent}}</td>
+            <td>{{index.dateSpent | date:'dd/MM/yyyy'}}</td>
         </tr>
     </tbody>
+  </table>
+
+  <table border="1">
+    <thead></thead>
+      <tr>
+         <th>Despesa Fixa</th>
+         <th>Valor</th>
+         <th>Data de Vencimento</th>
+         <th>Situação Pagamento</th>
+      </tr>
+      <tbody>
+         <tr *ngFor="let fixas of gastos['despesas']">
+           <td>{{fixas.titleExpenses}}</td>
+           <td>{{fixas.valueExpenses | currency:'BRL'}}</td>
+           <td>{{fixas.dueDate | date:'dd/MM/yyyy'}}</td>
+           <td>{{fixas.sitPayment}}</td>
+         </tr>
+      </tbody>
   </table>
