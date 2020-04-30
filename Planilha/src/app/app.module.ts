@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { EmpregadosComponent } from './empregados/empregados.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GastosComponent } from './gastos/gastos.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { GastosComponent } from './gastos/gastos.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

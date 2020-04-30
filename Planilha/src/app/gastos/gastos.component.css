@@ -1,0 +1,62 @@
+.col-1{
+    width: 25%;
+    padding: 15px;
+}
+
+/* Meio */
+.col-2{
+    width: 50%;
+    background-color: #FFFFFF;
+    margin-top: 12px;
+    border-radius: 8px; 
+}
+
+.col-2 table { 
+    margin: 0 auto;
+    border: none;
+    align-items: center;
+    padding: 0 auto;
+    background-color: #FFFFFF;
+}
+
+.col-2 table th{
+    background-color: #429ef5; 
+    border: none;
+    padding: 6px;
+}
+
+.col-2 table tr{
+    background-color: #429ef5; 
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    
+}
+.col-2 table th:first-child{
+    border-top-left-radius: 8px;
+}
+.col-2 table th:last-child{
+    border-top-right-radius: 8px;
+}
+
+
+.saldos { 
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.saldos h3{
+    margin: 4px;
+    background-color: #FFFFFF;
+}
+
+/* Direita */
+.col-3{
+    width: 25%;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+  }

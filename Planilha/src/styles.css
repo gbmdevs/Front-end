@@ -1,33 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:400,500,700display=swap');
-
-
-* { 
-    font: 400 14px Roboto, sans-serif;
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box; 
-}
-tbody td{
-  text-align: center;
-  padding: 08px;
-}
-tbody { 
-    padding-left: 4px;
-}
- h3{
-     position: relative;
+ * { 
+     background-color: lightgray;
+     padding: 0px;
+     box-sizing: border-box;
+     margin: 0;
  }
 
-tr th{
-    background-color: black;
-    color: aliceblue;
-    padding: 8px;
-} 
+ .header{
+     background-color: blueviolet;
+     padding: 15px;
+     color: #FFFFFF;
+     font-style: bold;
 
-.content{
-    border: 02px;
-    border-color: black;
-    border-style: solid;
-}
+ }
