@@ -1,14 +1,15 @@
+.header{
+    background-color:  #462066;
+    padding: 15px;
+    color: #FCF4D9;
+    font-style: bold;
+
+}
+ 
  * { 
-     background-color: lightgray;
+     background-color: #8ED2C9;
      padding: 0px;
      box-sizing: border-box;
      margin: 0;
  }
 
- .header{
-     background-color: blueviolet;
-     padding: 15px;
-     color: #FFFFFF;
-     font-style: bold;
-
- }

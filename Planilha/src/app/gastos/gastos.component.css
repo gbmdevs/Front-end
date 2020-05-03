@@ -1,6 +1,8 @@
 .col-1{
     width: 25%;
     padding: 15px;
+    background-color: white;
+    margin: auto;
 }
 
 /* Meio */
@@ -9,6 +11,7 @@
     background-color: #FFFFFF;
     margin-top: 12px;
     border-radius: 8px; 
+    box-shadow:  5px 08px 30px #000000;
 }
 
 .col-2 table { 
@@ -17,18 +20,21 @@
     align-items: center;
     padding: 0 auto;
     background-color: #FFFFFF;
+    width: auto;
 }
 
 .col-2 table th{
     background-color: #429ef5; 
     border: none;
     padding: 6px;
+    width: auto;
 }
 
-.col-2 table tr{
-    background-color: #429ef5; 
+.col-2 table tr:first-child{
+    background-color: #FFF; 
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    width: auto;
     
 }
 .col-2 table th:first-child{
@@ -36,6 +42,13 @@
 }
 .col-2 table th:last-child{
     border-top-right-radius: 8px;
+}
+
+.col-2 table tbody td { 
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 2px;
+    border: none;
 }
 
 
@@ -56,6 +69,7 @@
     width: 25%;
 }
 
+ 
 [class*="col-"] {
     float: left;
     padding: 15px;
