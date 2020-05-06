@@ -1,35 +1,32 @@
 
-
 <div class="col-1">
-  
-A
-</div>  
-
+  <div class ="saldos">
+    <h3>Total em Conta: {{gastos["totalSalaAcc" ] | currency:"BRL"}} </h3> 
+    <h3>Total Livre   : {{gastos["totalSalaryFree"] | currency:"BRL"}}</h3> 
+  </div>
+</div>
 <div class="col-2">
-<table border="1">
-    <thead></thead>
-     <div class="saldos">
-       <h3>Total em Conta: {{gastos["totalSalaAcc" ] | currency:"BRL"}} </h3> 
-       <h3>Total Livre   : {{gastos["totalSalaryFree"] | currency:"BRL"}}</h3>
-     </div>
+<table class="content-table">
+    <thead >
     <tr> 
       <th>Descrição</th>
       <th>Valor</th>
-      <th>Tipo de Gasto</th>
+      
       <th>Data do Gastos</th>
     </tr>
+    </thead> 
     <tbody>
         <tr *ngFor="let index of gastos['spents']"> 
             <td>{{index.spentDescription}}</td>
             <td>{{index.spentValue | currency:"BRL"}}</td>
-            <td>{{index.cdTipSpent}}</td>
+            
             <td>{{index.dateSpent | date:'dd/MM/yyyy'}}</td>
         </tr>
     </tbody>
   </table>
 </div>
 
-
+<!--
 <div class="col-3">
   <table border="1">
     <thead></thead>
@@ -49,3 +46,4 @@ A
       </tbody>
    </table>
 </div>
+-->

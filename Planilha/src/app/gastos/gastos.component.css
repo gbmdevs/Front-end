@@ -1,68 +1,70 @@
+/*
+ Estudo CSS pela WEB
+ DCODE - Youtube 
+*/
+
+.content-table { 
+   border-collapse: collapse;
+   margin: 25px 0;
+   font-size: 0.9em;
+   min-width: 400px;
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow:  0 0 20px rgb(0,0,0,0.15);
+}
+
+.content-table thead tr {
+   background-color: #009789;
+   color: #FFFFFF;
+   text-align: left; 
+   font-weight: bold;
+}
+
+.content-table th,
+.content-table td{
+    padding: 12px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #DDDDDD;
+}
+
+/* WTF Estudar isso aqui */
+.content-table tbody tr:nth-of-type(even){
+   background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #009789;
+}
+ 
+/*------------------------- */
+
+.saldos{
+    background-color: #009789;
+    border-radius: 5px;
+    padding: 5px;
+}
+.saldos h3{
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 5px;
+}
+
 .col-1{
     width: 25%;
-    padding: 15px;
-    background-color: white;
+    padding: 15px; 
     margin: auto;
 }
 
 /* Meio */
 .col-2{
-    width: 50%;
-    background-color: #FFFFFF;
-    margin-top: 12px;
-    border-radius: 8px; 
-    box-shadow:  5px 08px 30px #000000;
+    width: 50%; 
+    margin: auto;
 }
 
-.col-2 table { 
-    margin: 0 auto;
-    border: none;
-    align-items: center;
-    padding: 0 auto;
-    background-color: #FFFFFF;
-    width: auto;
-}
-
-.col-2 table th{
-    background-color: #429ef5; 
-    border: none;
-    padding: 6px;
-    width: auto;
-}
-
-.col-2 table tr:first-child{
-    background-color: #FFF; 
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    width: auto;
-    
-}
-.col-2 table th:first-child{
-    border-top-left-radius: 8px;
-}
-.col-2 table th:last-child{
-    border-top-right-radius: 8px;
-}
-
-.col-2 table tbody td { 
-    background-color: #FFFFFF;
-    text-align: center;
-    padding: 2px;
-    border: none;
-}
-
-
-.saldos { 
-    display: grid;
-    grid-template-columns: auto auto auto;
-    align-items: center;
-    background-color: #FFFFFF;
-}
-
-.saldos h3{
-    margin: 4px;
-    background-color: #FFFFFF;
-}
 
 /* Direita */
 .col-3{

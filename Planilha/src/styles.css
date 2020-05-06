@@ -1,15 +1,12 @@
 .header{
     background-color:  #462066;
-    padding: 15px;
+    padding: 12px;
     color: #FCF4D9;
     font-style: bold;
 
 }
  
- * { 
-     background-color: #8ED2C9;
-     padding: 0px;
-     box-sizing: border-box;
-     margin: 0;
- }
+body{
+    margin: 0px;
+}
 
