@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+ 
 @Component({
   selector: 'app-gastos',
   templateUrl: './gastos.component.html',
@@ -13,9 +13,11 @@ export class GastosComponent implements OnInit {
    
    gastos   = [];
    despesas = [];
-   
 
-  constructor( private httpClient : HttpClient) { }
+   animal: string;
+   name: string;
+
+  constructor( private httpClient : HttpClient ) { }
 
   async ngOnInit(){ 
      await this.httpClient.get(this.REST_API_GASTOS)
@@ -30,5 +32,9 @@ export class GastosComponent implements OnInit {
          });
 
   }
+
+ 
+
+
 
 }
