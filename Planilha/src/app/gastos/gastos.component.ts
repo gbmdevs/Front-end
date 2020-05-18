@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
- 
+import { CadastroGastoComponent } from '../cadastro-gasto/cadastro-gasto.component'; 
+
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-gastos',
   templateUrl: './gastos.component.html',
@@ -17,7 +20,8 @@ export class GastosComponent implements OnInit {
    animal: string;
    name: string;
 
-  constructor( private httpClient : HttpClient ) { }
+  constructor( private httpClient : HttpClient,
+               public dialog: MatDialog ) { }
 
   async ngOnInit(){ 
      await this.httpClient.get(this.REST_API_GASTOS)
@@ -30,11 +34,15 @@ export class GastosComponent implements OnInit {
             this.despesas = despesas;
             console.log(this.despesas);
          });
+   
+  
 
   }
 
- 
-
+  // Funções 
+  openDialog(){
+   this.dialog.open(CadastroGastoComponent);
+  } 
 
 
 }

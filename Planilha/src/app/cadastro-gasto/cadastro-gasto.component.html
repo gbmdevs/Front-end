@@ -1,0 +1,31 @@
+<div class="modal-container">
+<h1 mat-dialog-title>Inserir Novo Gasto</h1>
+<mat-form-field>
+    <mat-label>Descrição do Gasto</mat-label>
+    <input matInput placeholder="Descrição">
+</mat-form-field>  
+<mat-form-field> 
+    <mat-label>Selecione Tipo Gasto</mat-label>
+    <mat-select>
+      <mat-option  *ngFor="let tipgastos of tipgastos"
+         [value]="tipgastos.value">
+         {{tipgastos.name}}
+      </mat-option>  
+   </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field> 
+    <mat-label>Data do Gasto Ocorrido</mat-label>
+    <input  matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+</mat-form-field> 
+<mat-form-field> 
+    <mat-label>Valor do Gasto</mat-label>
+    <input matInput placeholder="Insira o Valor do Gasto">
+</mat-form-field> 
+<br>
+<button mat-raised-button color="primary">Enviar</button>
+<button mat-button>Cancelar</button>
+</div>
+

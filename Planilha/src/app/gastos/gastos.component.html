@@ -11,6 +11,7 @@
    
      </div>
   </div>
+  <button mat-raised-button (click)="openDialog()">Inserir Gasto</button>
 </div>
 <div class="col-2">
 <table class="content-table">
@@ -33,24 +34,5 @@
   </table>
 </div>
 
-<!--
-<div class="col-3">
-  <table border="1">
-    <thead></thead>
-      <tr>
-         <th>Despesa Fixa</th>
-         <th>Valor</th>
-         <th>Data de Vencimento</th>
-         <th>Situação Pagamento</th>
-      </tr>
-      <tbody>
-         <tr *ngFor="let fixas of gastos['despesas']">
-           <td>{{fixas.titleExpenses}}</td>
-           <td>{{fixas.valueExpenses | currency:'BRL'}}</td>
-           <td>{{fixas.dueDate | date:'dd/MM/yyyy'}}</td>
-           <td>{{fixas.sitPayment}}</td>
-         </tr>
-      </tbody>
-   </table>
-</div>
--->
+ 
+ 

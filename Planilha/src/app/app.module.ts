@@ -7,13 +7,17 @@ import { EmpregadosComponent } from './empregados/empregados.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GastosComponent } from './gastos/gastos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { FormsModule, ReactiveFormsModule} from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CadastroGastoComponent } from './cadastro-gasto/cadastro-gasto.component'; 
+import { MaterialModules} from './material-modules'; 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
  
 @NgModule({
   declarations: [
     AppComponent,
     EmpregadosComponent,
-    GastosComponent
+    GastosComponent,
+    CadastroGastoComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +25,11 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MaterialModules
   ], 
-  providers: [],
+  providers: [CadastroGastoComponent,
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
