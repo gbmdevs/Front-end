@@ -1,5 +1,6 @@
 <div class="modal-container">
-<h1 mat-dialog-title>Inserir Novo Gasto</h1>
+<h1 mat-dialog-title>Inserir novo gasto</h1>
+<form [formGroup]="form" (ngSubmit)="onClick()">
 <mat-form-field>
     <mat-label>Descrição do Gasto</mat-label>
     <input matInput placeholder="Descrição">
@@ -25,7 +26,10 @@
     <input matInput placeholder="Insira o Valor do Gasto">
 </mat-form-field> 
 <br>
-<button mat-raised-button color="primary">Enviar</button>
-<button mat-button>Cancelar</button>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+    <button mat-button mat-dialog-close>Cancelar</button>
+  </div>
+</form>  
 </div>
 
