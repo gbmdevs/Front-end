@@ -3,11 +3,11 @@
 <form [formGroup]="form" (ngSubmit)="onClick()">
 <mat-form-field>
     <mat-label>Descrição do Gasto</mat-label>
-    <input matInput placeholder="Descrição">
+    <input matInput placeholder="Descrição" formControlName="spentdescription" >
 </mat-form-field>  
 <mat-form-field> 
     <mat-label>Selecione Tipo Gasto</mat-label>
-    <mat-select>
+    <mat-select formControlName="cdTipSpent">
       <mat-option  *ngFor="let tipgastos of tipgastos"
          [value]="tipgastos.value">
          {{tipgastos.name}}
@@ -17,13 +17,13 @@
 <br>
 <mat-form-field> 
     <mat-label>Data do Gasto Ocorrido</mat-label>
-    <input  matInput [matDatepicker]="picker">
+    <input  matInput [matDatepicker]="picker" formControName="dateSpent">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker touchUi #picker></mat-datepicker>
 </mat-form-field> 
 <mat-form-field> 
     <mat-label>Valor do Gasto</mat-label>
-    <input matInput placeholder="Insira o Valor do Gasto">
+    <input matInput placeholder="Insira o Valor do Gasto" formControlName="spentValue">
 </mat-form-field> 
 <br>
   <div mat-dialog-actions>

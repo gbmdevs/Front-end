@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as data from './jsonTest.json';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-gasto',
@@ -8,16 +8,28 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./cadastro-gasto.component.css']
 })
 export class CadastroGastoComponent implements OnInit {
-
-  constructor() { }
+  
   form: FormGroup;
+
+  // Iniciar o Formulario
+  constructor(public fb: FormBuilder) { 
+  }
+ 
   tipgastos: any = (data as any).default;
   
-  ngOnInit(): void { 
+  ngOnInit() { 
+    this.form = this.fb.group({
+      spentdescription: ['',[Validators.required]],
+      spentValue: [null,[Validators.required]],
+      cdTipSpent: ['',[Validators.required]],
+      dateSpent: [null,[Validators.required]]
+    });
   }
 
-  onClick(){
-     console.log("Post Foi");
+  onClick(){ 
+    console.log(this.form.value);
+    alert('OI');
+    //location.reload();
   }
 
 }
