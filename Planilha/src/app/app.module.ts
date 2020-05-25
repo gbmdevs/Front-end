@@ -10,8 +10,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CadastroGastoComponent } from './cadastro-gasto/cadastro-gasto.component'; 
 import { MaterialModules} from './material-modules'; 
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
  
+import { DatePipe } from '@angular/common';
+
+// formatar as Datas para YYYY-MM-DD
+export const DateFormats = {
+    parse: {
+       dateInput: ['YYYY-MM-DD']
+    }, 
+    display: {
+       dateInput: 'YYYY-MM-DD',
+       monthYearLabel: 'MMM YYYY',
+       dateA11yLabel: 'LL',
+       monthYEarA11yLabel: 'MMMM YYYY',
+    },
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +44,11 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     ReactiveFormsModule,
     MaterialModules
   ], 
-  providers: [CadastroGastoComponent,
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
+  providers: [CadastroGastoComponent, 
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {provide: MAT_DATE_FORMATS, useValue: DateFormats},
+    {provide: DatePipe},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
