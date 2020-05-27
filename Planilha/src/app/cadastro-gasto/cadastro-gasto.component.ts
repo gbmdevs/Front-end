@@ -7,6 +7,8 @@ import {  MatSnackBar,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
+import { error } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -19,8 +21,10 @@ export class CadastroGastoComponent implements OnInit {
   form: FormGroup;  
   apiDate: any; 
   tipogasto : any ;
-    
+  Gastos: any; 
+
   REST_API_TIPO_GASTO: string = "http://localhost:8080/Planilha/tipogasto";
+  REST_API_GASTOS: string     = "http://localhost:8080/Planilha/gastos";
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -51,7 +55,7 @@ export class CadastroGastoComponent implements OnInit {
        });
   }
 
-  onClick(){ 
+   async onClick(){ 
   // Formata a Data que vinha completa, apenas precisando
   // do formato yyyy-MM-dd
    this.apiDate =  this.datePipe.transform(
@@ -59,13 +63,19 @@ export class CadastroGastoComponent implements OnInit {
     this.form.patchValue({"dateSpent": this.apiDate});
     console.log(this.apiDate); 
     console.log(this.form.value);  
+    
+     await this.http.post(this.REST_API_GASTOS, this.form.value).
+         subscribe(data => {
+           console.log(data);
+         });
 
+    /*
     // Teste de SnackBar
     this._snackBar.open('CannonBall', 'Fechar',{
        duration: 1500,
        horizontalPosition: this.horizontalPosition,
        verticalPosition: this.verticalPosition
-    });
+    });*/
 
 
     //location.reload();
