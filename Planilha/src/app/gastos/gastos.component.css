@@ -55,6 +55,24 @@
     margin: 5px;
 }
 
+.despesasfixas{
+    background-color: #39207C;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 1.70em;
+    box-shadow: 0 0 20px rgb(0,0,0,0.35);
+}
+.despesasfixas h3{
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 5px;
+}
+
+
+
+
 .col-1{
     width: 25%;
     padding: 15px; 

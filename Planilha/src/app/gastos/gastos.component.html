@@ -11,6 +11,13 @@
    
      </div>
   </div>
+  
+  <div class="despesasfixas">
+    <div *ngFor="let despesasfixas of gastos['despesas']">
+        <h3>{{despesasfixas.titleExpenses}} : {{despesasfixas.valueExpenses | currency: "BRL"}}</h3>
+    </div>    
+  </div>
+
   <button mat-raised-button (click)="openDialog()">Inserir Gasto</button>
 </div>
 <div class="col-2">
