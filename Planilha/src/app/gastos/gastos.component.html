@@ -1,22 +1,16 @@
 
+<div class="content">
 <div class="col-1">
   <div class ="saldos">
     <h3>Total em Conta: {{gastos["totalSalaAcc" ] | currency:"BRL"}} </h3> 
     <h3>Total Livre   : {{gastos["totalSalaryFree"] | currency:"BRL"}}</h3> 
   </div>
-
-  <div class="saldos">
-     <div *ngFor="let resumo of despesas['ResumoGastos']">
-   <h3> {{resumo.titleTypeSpent}} :</h3> <h3>{{resumo.valueSpent | currency: "BRL"}}</h3>
-   
-     </div>
-  </div>
-  
+ 
   <div class="despesasfixas">
     <div *ngFor="let despesasfixas of gastos['despesas']">
         <h3>{{despesasfixas.titleExpenses}} : {{despesasfixas.valueExpenses | currency: "BRL"}}</h3>
     </div>    
-  </div>
+  </div>  
 
   <button mat-raised-button (click)="openDialog()">Inserir Gasto</button>
 </div>
@@ -28,17 +22,29 @@
       <th>Valor</th>
       
       <th>Data do Gastos</th>
+      <th>Ações</th> 
     </tr>
     </thead> 
     <tbody>
         <tr *ngFor="let index of gastos['spents']"> 
             <td>{{index.spentDescription}}</td>
             <td>{{index.spentValue | currency:"BRL"}}</td>
-            
             <td>{{index.dateSpent | date:'dd/MM/yyyy'}}</td>
+            <td><mat-icon>edit</mat-icon>
+             <button mat-mini-fab color="basic"><mat-icon>delete</mat-icon></button></td>
         </tr>
     </tbody>
   </table>
+ </div> 
+ <div class="col-3">
+   
+  <div class="saldos">
+    <div *ngFor="let resumo of despesas['ResumoGastos']">
+  <h3> {{resumo.titleTypeSpent}} :</h3> <h3>{{resumo.valueSpent | currency: "BRL"}}</h3>
+  
+    </div>
+ </div>
+  </div>
 </div>
 
  

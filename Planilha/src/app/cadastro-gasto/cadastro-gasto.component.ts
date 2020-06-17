@@ -41,7 +41,7 @@ export class CadastroGastoComponent implements OnInit {
 
   async ngOnInit() { 
     this.form = this.fb.group({
-      spentdescription: ['',[Validators.required]],
+      spentDescription: ['',[Validators.required]],
       spentValue: [null,[Validators.required]],
       cdTipSpent: ['',[Validators.required]],
       dateSpent: ['',[Validators.required]]

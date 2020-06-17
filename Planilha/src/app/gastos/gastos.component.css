@@ -3,6 +3,10 @@
  DCODE - Youtube 
 */
 
+.content{
+    display: flex;
+}
+
 .content-table { 
    border-collapse: collapse;
    margin: 25px 0;
@@ -11,6 +15,7 @@
    border-radius: 5px 5px 0 0;
    overflow: hidden;
    box-shadow:  0 0 20px rgb(0,0,0,0.15);
+   width: 500px;
 }
 
 .content-table thead tr {
@@ -74,29 +79,33 @@
 
 
 .col-1{
-    width: 25%;
-    padding: 15px; 
+    max-width: 330px; 
     margin: auto;
+    margin-top: 0;
+    width: 330px;
 }
 
 /* Meio */
-.col-2{
-    width: 50%; 
-    margin: auto;
+.col-2{ 
+    margin: 0 auto;
 }
 
 
 /* Direita */
 .col-3{
     width: 25%;
+    align-items: center;
 }
 
  
-[class*="col-"] {
-    float: left;
+[class*="col-"] {  
     padding: 15px;
   }
 
 button{
     margin-top: 1.5em;
+}
+
+td button{
+    margin: 0 0;
 }
