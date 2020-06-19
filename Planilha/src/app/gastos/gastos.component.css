@@ -109,3 +109,7 @@ button{
 td button{
     margin: 0 0;
 }
+
+td a{
+    cursor: pointer;
+}
