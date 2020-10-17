@@ -7,6 +7,9 @@ import '../styles/pages/landing.css';
 import {FiArrowRight} from 'react-icons/fi';
 
 
+/* Aproveitar o Recarregamento */
+import {Link} from 'react-router-dom';
+
 /* Imagens */
 
 import logoImg from '../images/logo.svg';
@@ -26,9 +29,9 @@ function Landing(){
              <strong>Distrito Federal</strong>
              <span>Sobradinho</span>
         </div>
-        <a href="#" className="enter-app">
+        <Link to="/app" className="enter-app">
            <FiArrowRight size={26} color="rgba(0 , 0 , 0 , 0.6)" />
-        </a>
+        </Link>
     </div>
  </div>
   );
