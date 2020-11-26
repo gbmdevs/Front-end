@@ -20,6 +20,9 @@ export class GastosComponent implements OnInit {
    despesas = [];
    despesasfixas = [];
 
+   // Saldos
+   salarioLivre = 0.0;
+
    animal: string;
    name: string;
 

@@ -86,9 +86,30 @@
               <h1>Ola Usuario!</h1>
               <p>Bem vindo ao Dashboard</p>
           </div>
+
         </div>
 
         <div class="main__cards">
+            
+            <div class="card">
+               <div class="card__inner">
+                  <p class="text-primary-p">Saldo em Conta</p>
+                  <span class="font-bold text-title"
+                  [ngClass]="{positive: gastos['totalSalaAcc'] > 0,
+                               negative: gastos['totalSalaAcc'] < 0
+                  }"
+                  >{{gastos["totalSalaAcc" ] | currency:"BRL"}}</span>
+                  <p class="text-primary-p">Saldo Livre para Uso</p>
+                  <span class="font-bold text-title" 
+                   [ngClass]="{positive: gastos['totalSalaryFree'] > 0,
+                               negative: gastos['totalSalaryFree'] < 0
+                  }"
+                  >
+                    {{gastos["totalSalaryFree"] | currency:"BRL"}}
+                  </span>
+               </div>
+            </div>
+
 
             <div class="card" *ngFor="let resumo of despesas['ResumoGastos']">  
            <!--   <i class="fa fa-user-o fa-2x text-lightblue"></i>-->
@@ -119,8 +140,8 @@
            <div class="charts__right">
                <div class="charts__right__title">
                    <div>
-                      <h1>Status Diario</h1>
-                      <p>Sobradinho, Distrito Federal</p>
+                      <h1>Despesas Fixas</h1>
+                      <p>Saldo Somatório: </p>
                    </div>
                    <i class="fa fa-usd"></i>
                </div>
@@ -157,7 +178,7 @@
             </div>
             <h2>MNG</h2>
             <div class="sidebar__link" (click)="openDialog()">
-                <i class="fa fa-user-secret"></i>
+                <i class="fa fa-money"></i>
                 <span>Adicionar Gasto</span>
             </div>
             <div class="sidebar__link">
@@ -170,59 +191,6 @@
         </div>
     </div>
 </div>
-<script>
-  var options = {
-    series: [{
-    name: 'Net Profit',
-    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-  }, {
-    name: 'Revenue',
-    data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-  }, {
-    name: 'Free Cash Flow',
-    data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-  }],
-    chart: {
-    type: 'bar',
-    height: 350
-  },
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: '55%',
-      endingShape: 'rounded'
-    },
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ['transparent']
-  },
-  xaxis: {
-    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-  },
-  yaxis: {
-    title: {
-      text: '$ (thousands)'
-    }
-  },
-  fill: {
-    opacity: 1
-  },
-  tooltip: {
-    y: {
-      formatter: function (val) {
-        return "$ " + val + " thousands"
-      }
-    }
-  }
-  };
-
-  var chart = new ApexCharts(document.querySelector("#apex1"), options);
-  chart.render();
-</script>
+ 
  
  
