@@ -11,8 +11,12 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CadastroGastoComponent } from './cadastro-gasto/cadastro-gasto.component'; 
 import { MaterialModules} from './material-modules'; 
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
- 
-import { DatePipe } from '@angular/common';
+
+// Apex charts para Gráfico 
+import {NgApexchartsModule } from 'ng-apexcharts';
+
+import { DatePipe } from '@angular/common'; 
+import { DespesasfixasComponent } from './despesasfixas/despesasfixas.component';
 
 // formatar as Datas para YYYY-MM-DD
 export const DateFormats = {
@@ -33,7 +37,8 @@ export const DateFormats = {
     AppComponent,
     EmpregadosComponent,
     GastosComponent,
-    CadastroGastoComponent
+    CadastroGastoComponent, 
+    DespesasfixasComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ export const DateFormats = {
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModules
+    MaterialModules,
+    NgApexchartsModule
   ], 
   providers: [CadastroGastoComponent, 
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},

@@ -129,12 +129,25 @@
             <div class="charts__left">
                <div class="charts__left__title">
                    <div>
-                       <h1>Reporte Diario</h1>
-                       <p>Sobradinho, Distrito Federal</p>
+                       <h1>Resumo Gráfico</h1>
+                       <p>Despesas Fixas Mensal</p>
                    </div>
                    <i class="fa fa-usd"></i>
                </div>
-               <div id="apex1"></div>            
+               <div id="apex1">
+                <apx-chart
+                   [series]="chartOptions.series"
+                   [chart]="chartOptions.chart"
+                   [dataLabels]="chartOptions.dataLabels"
+                   [plotOptions]="chartOptions.plotOptions"
+                   [yaxis]="chartOptions.yaxis"
+                   [xaxis]="chartOptions.xaxis"
+                   [legend]="chartOptions.legend"
+                   [colors]="chartOptions.colors"
+                   [grid]="chartOptions.grid"
+                ></apx-chart>
+               </div>
+                       
             </div>
 
            <div class="charts__right">
@@ -176,17 +189,14 @@
                 <i class="fa fa-home"></i>
                 <a href="#">Dashboard</a>
             </div>
-            <h2>MNG</h2>
-            <div class="sidebar__link" (click)="openDialog()">
+            <h2>Gerenciamento</h2>
+            <div class="sidebar__link" (click)="openDialog('gastos')">
                 <i class="fa fa-money"></i>
                 <span>Adicionar Gasto</span>
             </div>
-            <div class="sidebar__link">
-                <i class="fa fa-building-o"></i>
-                <a href="#">Administrar1</a>
-            </div>                <div class="sidebar__link">
-                <i class="fa fa-user-secret"></i>
-                <a href="#">Administrar2</a>
+            <div class="sidebar__link" (click)="openDialog('despesasfixas')">
+                <i class="fa fa-money"></i>
+                <span>Despesas Fixas</span> 
             </div>                
         </div>
     </div>
