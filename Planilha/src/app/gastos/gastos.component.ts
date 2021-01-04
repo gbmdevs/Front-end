@@ -2,30 +2,29 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CadastroGastoComponent } from '../cadastro-gasto/cadastro-gasto.component'; 
 
-import  {
-   ApexAxisChartSeries,
+import  { 
    ApexChart,
    ChartComponent,
    ApexDataLabels,
-   ApexPlotOptions,
-   ApexYAxis,
+   ApexPlotOptions, 
    ApexLegend,
-   ApexGrid,
-   ApexXAxis, 
+   ApexGrid, 
+   ApexNonAxisChartSeries,
+   ApexResponsive, 
  } from "ng-apexcharts";
 
 import { MatDialog } from '@angular/material/dialog';
 
 
 export type ChartOptions = {
-   series: ApexAxisChartSeries;
+   series: ApexNonAxisChartSeries;
    chart: ApexChart;
    dataLabels: ApexDataLabels;
-   plotOptions: ApexPlotOptions;
-   yaxis: ApexYAxis;
-   xaxis: ApexXAxis;
+   plotOptions: ApexPlotOptions; 
+   responsive: ApexResponsive[];
    grid: ApexGrid;
    colors: string[];
+   labels: any,
    legend: ApexLegend;
  };
 
@@ -62,75 +61,45 @@ export class GastosComponent implements OnInit {
   constructor( private httpClient : HttpClient,
                public dialog: MatDialog ) { 
                   this.chartOptions = {
-                     series: [
-                       {
-                         name: "Valor",
-                         data: [240, 145, 66.39, 992.57, 90, 
-                                900, 200, 150, 675]
-                       }
-                     ],
+                     series: [240, 145, 66.39, 992.57, 90, 
+                                900, 200, 150, 675],
                      chart: {
-                       height: 350,
-                       type: "bar",
-                       events: {
-                         click: function(chart, w, e) {
-                           // console.log(chart, w, e)
-                         }
-                       }
+                       width: 380,
+                       type: "pie"
                      },
-                     colors: [
-                       "#008FFB",
-                       "#00E396",
-                       "#FEB019",
-                       "#FF4560",
-                       "#775DD0",
-                       "#546E7A",
-                       "#26a69a",
-                       "#D10CE8"
-                     ],
-                     plotOptions: {
-                       bar: {
-                         columnWidth: "45%",
-                         distributed: true
-                       }
-                     },
-                     dataLabels: {
-                       enabled: false
-                     },
-                     legend: {
-                       show: false
-                     },
-                     grid: {
-                       show: false
-                     },
-                     xaxis: {
-                       categories: [
+                     labels: [
                          ["Condomínio"],
-                         ["Internet", "Banda Larga"] ,
-                         ["Fatura","Claro"],
-                         ["Cartão de", "Crédito"],
-                         ["Agua e", "Luz/Gas"],
-                         ["Aluguel","Apartamento"],
-                         ["Transporte ", "Onibus"],
-                         ["Segurança","(Reserva)"],
-                         ["Investimento"]
-                       ],
-                       labels: {
-                         style: {
-                           colors: [
-                             "#008FFB",
+                         ["Internet Banda Larga"] ,
+                         ["Fatura Claro"],
+                         ["Cartão de Crédito"],
+                         ["Agua e Luz/Gas"],
+                         ["Aluguel Apartamento"],
+                         ["Transporte Onibus"],
+                         ["Segurança (Reserva)"],
+                         ["Investimento"]] , 
+                    colors: ["#008FFB",
                              "#00E396",
                              "#FEB019",
                              "#FF4560",
                              "#775DD0",
                              "#546E7A",
                              "#26a69a",
-                             "#D10CE8"
-                           ],
-                           fontSize: "12px"
-                         }
-                       }
-                     }
+                             "#D10CE8",
+                             "#CF4520"],     
+                    responsive: [
+                      {
+                        breakpoint: 480,
+                        options:{
+                          chart: {
+                             width: 200
+                          },
+                          legend: {
+                            position: "bottom"
+                          }
+                        }
+                      }
+                    ],     
+
                    };
                }
 
