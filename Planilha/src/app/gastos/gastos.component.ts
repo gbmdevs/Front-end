@@ -37,20 +37,24 @@ export type ChartOptions = {
 
 export class GastosComponent implements OnInit {
    
-   private REST_API_GASTOS         = "http://localhost:8080/Planilha/gastos";
-   private REST_API_RESUMO         = "http://localhost:8080/Planilha/resumo";
-   private REST_API_DESPESASFIXAS  = "http://localhost:8080/Planilha/despesasfixas";
+   private REST_API_GASTOS          = "http://localhost:8080/Planilha/gastos";
+   private REST_API_RESUMO          = "http://localhost:8080/Planilha/resumo";
+   private REST_API_DESPESASFIXAS   = "http://localhost:8080/Planilha/despesasfixas";
+   private REST_API_GRAFICODESPFIXA = "http://localhost:8080/Planilha/despfixgrap";
    
 
    // Gráficos da Tela
    @ViewChild("chart") chart: ChartComponent;
    public chartOptions: Partial<ChartOptions>;
 
+   // Indexadores
+   i: number;
 
    // Arrays de Trabalho
-   gastos   = [];
-   despesas = [];
-   despesasfixas = [];
+   gastos          = [];
+   despesas        = [];
+   despesasfixas   = [];
+   graficodespfixa = []; 
 
    // Saldos
    salarioLivre = 0.0;
@@ -60,47 +64,7 @@ export class GastosComponent implements OnInit {
 
   constructor( private httpClient : HttpClient,
                public dialog: MatDialog ) { 
-                  this.chartOptions = {
-                     series: [240, 145, 66.39, 992.57, 90, 
-                                900, 200, 150, 675],
-                     chart: {
-                       width: 380,
-                       type: "pie"
-                     },
-                     labels: [
-                         ["Condomínio"],
-                         ["Internet Banda Larga"] ,
-                         ["Fatura Claro"],
-                         ["Cartão de Crédito"],
-                         ["Agua e Luz/Gas"],
-                         ["Aluguel Apartamento"],
-                         ["Transporte Onibus"],
-                         ["Segurança (Reserva)"],
-                         ["Investimento"]] , 
-                    colors: ["#008FFB",
-                             "#00E396",
-                             "#FEB019",
-                             "#FF4560",
-                             "#775DD0",
-                             "#546E7A",
-                             "#26a69a",
-                             "#D10CE8",
-                             "#CF4520"],     
-                    responsive: [
-                      {
-                        breakpoint: 480,
-                        options:{
-                          chart: {
-                             width: 200
-                          },
-                          legend: {
-                            position: "bottom"
-                          }
-                        }
-                      }
-                    ],     
-
-                   };
+                  
                }
 
   async ngOnInit(){ 
@@ -114,6 +78,49 @@ export class GastosComponent implements OnInit {
             this.despesas = despesas;
             console.log(this.despesas);
          });  
+      await this.httpClient.get(this.REST_API_GRAFICODESPFIXA)   
+         .subscribe(( graficodespfixa: any[]) =>{
+            this.graficodespfixa = graficodespfixa;
+            console.log(this.graficodespfixa);
+            this.chartOptions = {
+              series: [],
+              chart: {
+                width: 380,
+                type: "pie"
+              },
+              labels: [] , 
+             colors: ["#008FFB",
+                      "#00E396",
+                      "#FEB019",
+                      "#FF4560",
+                      "#775DD0",
+                      "#546E7A",
+                      "#26a69a",
+                      "#D10CE8",
+                      "#CF4520"],     
+             responsive: [
+               {
+                 breakpoint: 480,
+                 options:{
+                   chart: {
+                      width: 200
+                   },
+                   legend: {
+                     position: "bottom"
+                   }
+                 }
+               }
+             ],     
+
+            };
+            for(this.i=0;this.i<=this.graficodespfixa.length;this.i++){
+              this.chartOptions.labels.push(this.graficodespfixa[this.i].nomeDespesaFixa);
+              this.chartOptions.series.push(this.graficodespfixa[this.i].valorDespesaFixa);
+            }
+            
+            console.log(this.chartOptions.labels);
+         });
+
   }
 
   // Funções 
