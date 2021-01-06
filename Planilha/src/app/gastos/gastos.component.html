@@ -158,12 +158,10 @@
 
                <div class="charts__right__cards">
 
-                  <div class="card1" *ngFor="let despesasfixas of gastos['despesas']">
-                      <h1>{{despesasfixas.titleExpenses}}</h1>
-                      <p>{{despesasfixas.valueExpenses | currency: "BRL"}}</p>
+                  <div  class="card1" (click)="openDialog('adminDespFixas')"> 
+                     <h1>Administrar Despesas Fixas</h1>
                   </div>
-                  
-                   
+                 
                </div>
            </div>
         </div>

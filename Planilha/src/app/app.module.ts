@@ -17,6 +17,7 @@ import {NgApexchartsModule } from 'ng-apexcharts';
 
 import { DatePipe } from '@angular/common'; 
 import { DespesasfixasComponent } from './despesasfixas/despesasfixas.component';
+import { AdmindespfixasComponent } from './admindespfixas/admindespfixas.component';
 
 // formatar as Datas para YYYY-MM-DD
 export const DateFormats = {
@@ -38,7 +39,7 @@ export const DateFormats = {
     EmpregadosComponent,
     GastosComponent,
     CadastroGastoComponent, 
-    DespesasfixasComponent
+    DespesasfixasComponent, AdmindespfixasComponent
   ],
   imports: [
     BrowserModule,

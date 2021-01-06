@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CadastroGastoComponent } from '../cadastro-gasto/cadastro-gasto.component'; 
+import { CadastroGastoComponent } from '../cadastro-gasto/cadastro-gasto.component';
+import { AdmindespfixasComponent } from '../admindespfixas/admindespfixas.component'; 
 
 import  { 
    ApexChart,
@@ -129,10 +130,16 @@ export class GastosComponent implements OnInit {
           case 'gastos': 
              this.dialog.open(CadastroGastoComponent);
              break;
+          case 'adminDespFixas':
+             this.dialog.open(AdmindespfixasComponent);
+             break;   
              
        }
-   
   } 
+  // Administrar Despesas Fixas
+  adminDespFixas(){
+    console.log("Teste");
+  }
 
 
 }
