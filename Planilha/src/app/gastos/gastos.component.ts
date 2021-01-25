@@ -119,7 +119,7 @@ export class GastosComponent implements OnInit {
               this.chartOptions.series.push(this.graficodespfixa[this.i].valorDespesaFixa);
             }
             
-            console.log(this.chartOptions.labels);
+         //   console.log(this.chartOptions.labels);
          });
 
   }
