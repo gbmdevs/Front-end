@@ -8,7 +8,7 @@
 
       <ng-container matColumnDef="Data de Vencimento">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Vencimento </th>
-        <td mat-cell *matCellDef="let row"> {{row.dueDate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.dueDate | date: 'dd/MM/yyyy'}} </td>
      </ng-container>
 
      <ng-container matColumnDef="Valor da Despesa">
@@ -18,7 +18,10 @@
 
      <ng-container matColumnDef="Situação Pagamento">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Situação Pagamento </th>
-      <td mat-cell *matCellDef="let row"> {{row.sitPayment}} </td>
+      <td mat-cell *matCellDef="let row">  
+          <i class="fa" [ngClass]="{'fa-check green': row.sitPayment === 'S',
+                                    'fa-times red': row.sitPayment === 'N'}"></i>                         
+      </td>
      </ng-container>
     
 
