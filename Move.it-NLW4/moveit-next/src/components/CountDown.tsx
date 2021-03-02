@@ -5,7 +5,7 @@ import styles from '../styles/components/CountDown.module.css';
 export function CountDown(){
     
     const [time, setTime ] = useState(25 * 60);
-    const [active, setActive] = useState(false);
+    const [isActive, setActive] = useState(false);
 
     const minutes = Math.floor(time / 60);
     const seconds = time % 60 ;
@@ -17,17 +17,23 @@ export function CountDown(){
     function startCountDown(){
         setActive(true);
     }
+
+    function resetCountDown(){
+       setActive(false)
+    }
     
 
     // Estudar isso abaixo 
     useEffect(() => {
-        if(active && time > 0){
+        if(isActive && time > 0){
             setTimeout(() => {
             setTime(time - 1);
             }, 1000);
         }
-    }, [active, time]);
+    }, [isActive, time]);
 
+    
+      // Estudar If ternario
      
 
     return(
@@ -46,12 +52,24 @@ export function CountDown(){
 
          
       </div>
+
+    { isActive ? (
+       <button type="button" 
+       className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+       onClick={resetCountDown}
+       >
+         Abandonar Ciclo
+      </button>         
+    ) : (
       <button type="button" 
               className={styles.countdownButton}
               onClick={startCountDown}
       >
-      Iniciar Ciclo
+        Iniciar Ciclo
      </button>
+    )}
+
+      
       </div>
       
     );
