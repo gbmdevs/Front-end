@@ -2,10 +2,14 @@
 import { useState , useEffect} from 'react';
 import styles from '../styles/components/CountDown.module.css';
 
+// Estudar Isso
+let countdownTimeOut: NodeJS.Timeout;
+
 export function CountDown(){
     
-    const [time, setTime ] = useState(25 * 60);
+    const [time, setTime ] = useState(0.05 * 60);
     const [isActive, setActive] = useState(false);
+    const [hasFinished, setHasFinished] = useState(false);
 
     const minutes = Math.floor(time / 60);
     const seconds = time % 60 ;
@@ -19,16 +23,21 @@ export function CountDown(){
     }
 
     function resetCountDown(){
-       setActive(false)
+       clearTimeout(countdownTimeOut);
+       setActive(false);
+       setTime(0.05 * 60);
     }
     
 
     // Estudar isso abaixo 
     useEffect(() => {
         if(isActive && time > 0){
-            setTimeout(() => {
+           countdownTimeOut =  setTimeout(() => {
             setTime(time - 1);
             }, 1000);
+        } else if (isActive && time == 0){
+            setHasFinished(true);
+            setActive(false);
         }
     }, [isActive, time]);
 
@@ -53,23 +62,30 @@ export function CountDown(){
          
       </div>
 
-    { isActive ? (
-       <button type="button" 
-       className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
-       onClick={resetCountDown}
-       >
-         Abandonar Ciclo
-      </button>         
-    ) : (
-      <button type="button" 
+      { hasFinished ? (
+        <button 
+        disabled
+        className={styles.countdownButton}
+        >Ciclo Encerrado</button>
+        ) : (
+          <>
+          { isActive ? (
+            <button type="button" 
+             className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+             onClick={resetCountDown}
+             >
+             Abandonar Ciclo
+            </button>         
+           ) : (
+             <button type="button" 
               className={styles.countdownButton}
               onClick={startCountDown}
-      >
-        Iniciar Ciclo
-     </button>
-    )}
-
-      
+            >
+             Iniciar Ciclo
+           </button>
+           )}
+          </>
+        )}      
       </div>
       
     );
