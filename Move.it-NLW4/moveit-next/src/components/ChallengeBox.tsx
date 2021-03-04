@@ -4,11 +4,11 @@ import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox(){
     
-    const context = useContext(ChallengeContext);
+    const contextData = useContext(ChallengeContext);
 
     const hasChallengeActive = true;
 
-    console.log(context);
+    console.log(contextData);
 
     return(
         <div className={styles.challengeBoxContainer}>
