@@ -4,22 +4,22 @@ import styles from '../styles/components/ChallengeBox.module.css';
 
 export function ChallengeBox(){
     
-    const contextData = useContext(ChallengeContext);
+    const { activeChallenge, addExperience } = useContext(ChallengeContext);
 
-    const hasChallengeActive = true;
-
-    console.log(contextData);
+    function done(){
+        addExperience(activeChallenge.amount);
+    }
 
     return(
         <div className={styles.challengeBoxContainer}>
 
-         { hasChallengeActive ? (
+         { activeChallenge ? (
              <div className={styles.challengeActive}>
-                 <header>Ganhe 400 xp</header>
+                 <header>Ganhe {activeChallenge.amount} xp</header>
                  <main>
-                     <img src="icons/body.svg" alt="Body"/>
+                     <img src={`icons/${activeChallenge.type}.svg`} alt="Body"/>
                      <strong>Novo Desafio</strong>
-                     <p>Levante e faça uma caminhada de 3 minutos</p>
+                     <p>{activeChallenge.description}</p>
                  </main>
                  <footer>
                      <button type='button'
@@ -28,6 +28,7 @@ export function ChallengeBox(){
                      </button>
                      <button type='button'
                              className={styles.challengeSuccessedButton}
+                             onClick={done}
                      > Completei
                      </button>
                  </footer>
