@@ -12,11 +12,12 @@ interface ChallengeContextData{
     level: number,
     currentExperience: number,
     challengesCompleted: number,
-    experiencePorcent: number,
+    experienceToNextLevel: number,
     levelUp: () => void, 
     newChallenge: () => void,
     activeChallenge: Challenge,
-    addExperience: (number) => void
+    resetChallenge: () => void
+
 }
 
 interface ChallengeProviderProps{
@@ -33,6 +34,8 @@ export function ChallengeProvider({ children}: ChallengeProviderProps){
     const [ activeChallenge, setActiveChallenge]          = useState(null);
     const [ experiencePorcent , setExperiencePorcent]     = useState(0);
 
+    // Log - Experiencia utilizadas em RPG - Estudar
+    const experienceToNextLevel  = Math.pow((level + 1 ) * 4 , 2)
 
     function levelUp(){
       setLevel(level + 1 );
@@ -44,16 +47,10 @@ export function ChallengeProvider({ children}: ChallengeProviderProps){
         setActiveChallenge(challenge);   
     }
 
-    function addExperience(newExp: number){ 
-        let exp     = currentExperience +  newExp;
-        console.log(exp);
-        if(exp > 600){
-            exp - 600;
-        }
-        const porcent = (exp / 600 ) * 100; 
-        setExperiencePorcent(porcent);
-        setCurrentExperience(exp); 
+    function resetChallenge(){
+        setActiveChallenge(null);
     }
+ 
 
 
     return(
@@ -62,11 +59,11 @@ export function ChallengeProvider({ children}: ChallengeProviderProps){
            level,
            currentExperience,
            challengesCompleted,
-           experiencePorcent,
+           experienceToNextLevel,
            levelUp,
            newChallenge,
            activeChallenge,
-           addExperience
+           resetChallenge
         }}>
        {children}    
      </ChallengeContext.Provider>
