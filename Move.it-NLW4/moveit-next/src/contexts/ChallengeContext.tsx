@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import challenges from '../../challenges.json';
 
 interface Challenge { 
@@ -37,6 +37,13 @@ export function ChallengeProvider({ children}: ChallengeProviderProps){
     // Log - Experiencia utilizadas em RPG - Estudar
     const experienceToNextLevel  = Math.pow((level + 1 ) * 4 , 2)
 
+
+    // Array vazio, a função so sera executado uma unica vez quando o componente for exibido em tela
+    useEffect(() => {
+      Notification.requestPermission();
+    }, []);
+
+
     function levelUp(){
       setLevel(level + 1 );
     }
@@ -45,6 +52,16 @@ export function ChallengeProvider({ children}: ChallengeProviderProps){
         const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
         const challenge = challenges[randomChallengeIndex];
         setActiveChallenge(challenge);   
+
+        // Ta na pasta public
+        new Audio('/notification.mp3').play();
+
+        if(Notification.permission === 'granted'){
+           new Notification('Novo desafio 🎉',{
+             body: `Valendo ${challenge.amount}xp!`
+           }
+        );
+        }
     }
 
     function resetChallenge(){

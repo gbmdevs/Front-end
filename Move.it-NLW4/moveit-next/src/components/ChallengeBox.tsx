@@ -6,14 +6,16 @@ import styles from '../styles/components/ChallengeBox.module.css';
 export function ChallengeBox(){
     
     const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengeContext);
-    const {} = useContext(CountDownContext);
+    const {resetCountDown ,} = useContext(CountDownContext);
 
     function handleChallengeSucessed(){
-        
+        completeChallenge();
+        resetCountDown();
     }
 
     function handleChallengeFailed(){
-        
+        resetChallenge();
+        resetCountDown();    
     }
 
     return(
@@ -30,12 +32,12 @@ export function ChallengeBox(){
                  <footer>
                      <button type='button'
                              className={styles.challengeFailedButton}
-                             onClick={resetChallenge}
+                             onClick={handleChallengeFailed}
                      > Falhei    
                      </button>
                      <button type='button'
                              className={styles.challengeSuccessedButton}
-                             onClick={completeChallenge}
+                             onClick={handleChallengeSucessed}
                      > Completei
                      </button>
                  </footer>
