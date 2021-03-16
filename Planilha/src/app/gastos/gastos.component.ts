@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CadastroGastoComponent } from '../cadastro-gasto/cadastro-gasto.component';
 import { AdmindespfixasComponent } from '../admindespfixas/admindespfixas.component'; 
+import { GraphistdespesafixComponent } from '../graphistdespesafix/graphistdespesafix.component';
 
 import  { 
    ApexChart,
@@ -84,12 +85,12 @@ export class GastosComponent implements OnInit {
             this.graficodespfixa = graficodespfixa;
             console.log(this.graficodespfixa);
             this.chartOptions = {
-              series: [],
+              series: [], 
               chart: {
                 width: 380,
-                type: "pie"
+                type: "pie"               
               },
-              labels: [] , 
+             labels: [] , 
              colors: ["#008FFB",
                       "#00E396",
                       "#FEB019",
@@ -99,7 +100,7 @@ export class GastosComponent implements OnInit {
                       "#26a69a",
                       "#D10CE8",
                       "#CF4520"],     
-             responsive: [
+              responsive: [
                {
                  breakpoint: 480,
                  options:{
@@ -122,24 +123,26 @@ export class GastosComponent implements OnInit {
          //   console.log(this.chartOptions.labels);
          });
 
-  }
 
-  // Funções 
-  openDialog( opcao: any){
-       switch(opcao){
-          case 'gastos': 
-             this.dialog.open(CadastroGastoComponent);
-             break;
-          case 'adminDespFixas':
-             this.dialog.open(AdmindespfixasComponent);
-             break;   
-             
-       }
-  } 
-  // Administrar Despesas Fixas
-  adminDespFixas(){
-    console.log("Teste");
-  }
+
+        }
+           // Funções 
+           openDialog( opcao: any){
+            switch(opcao){
+               case 'gastos': 
+                  this.dialog.open(CadastroGastoComponent);
+                  break;
+               case 'adminDespFixas':
+                  this.dialog.open(AdmindespfixasComponent);
+                  break;   
+               case 'histdespefixas':
+                  this.dialog.open(GraphistdespesafixComponent);
+                  break;   
+           
+            }
+         } 
 
 
 }
+
+
