@@ -88,7 +88,12 @@ export class GastosComponent implements OnInit {
               series: [], 
               chart: {
                 width: 380,
-                type: "pie"               
+                type: "pie" ,
+                events: {
+                  dataPointSelection: function(event, chartContext, config) {
+                      this.openDialog('histdespefixas',config.w.config.labels[config.dataPointIndex]);
+                   }.bind(this)
+                },       
               },
              labels: [] , 
              colors: ["#008FFB",
@@ -99,7 +104,7 @@ export class GastosComponent implements OnInit {
                       "#546E7A",
                       "#26a69a",
                       "#D10CE8",
-                      "#CF4520"],     
+                      "#CF4520"],                      
               responsive: [
                {
                  breakpoint: 480,
@@ -127,7 +132,7 @@ export class GastosComponent implements OnInit {
 
         }
            // Funções 
-           openDialog( opcao: any){
+           openDialog( opcao: any, titulo: string){ 
             switch(opcao){
                case 'gastos': 
                   this.dialog.open(CadastroGastoComponent);
@@ -136,7 +141,13 @@ export class GastosComponent implements OnInit {
                   this.dialog.open(AdmindespfixasComponent);
                   break;   
                case 'histdespefixas':
-                  this.dialog.open(GraphistdespesafixComponent);
+                  this.dialog.open(GraphistdespesafixComponent, {
+                    width: '1640px',
+                    disableClose: false,
+                    data: { 
+                       name: titulo, id: 1
+                    }
+                  });
                   break;   
            
             }
