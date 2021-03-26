@@ -45,6 +45,9 @@ export class GraphistdespesafixComponent implements OnInit {
            {
              name: data.name,
              data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+           },{
+             name: 'Media',
+             data: [20,20,20,20,20,20,20,20,20]
            }
         ],
         chart: {
@@ -58,7 +61,9 @@ export class GraphistdespesafixComponent implements OnInit {
           enabled: false
         },
         stroke: {
-          curve: "straight"
+           width: [5,7,5],
+           curve: "straight",
+           dashArray: [0,8,5]
         },
         title: {
           text: "Historico dos ultimos 12 meses(média)",
