@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -36,20 +37,26 @@ export class GraphistdespesafixComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  private REST_API_ULT_12_DESP  = "http://localhost:8080/Planilha/ultmovidesp";
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: graphData){
+  // Variaveis de Trabalho
+  ult12desp      = [];
+  valores12desp  = [];
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: graphData,
+                                       private httpClient : HttpClient){
      console.log(data);
      // Construindo Grafico
      this.chartOptions = {
-        series: [
+        series: [], /*
            {
              name: data.name,
              data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-           },{
+           }
+           /*,{
              name: 'Media',
              data: [20,20,20,20,20,20,20,20,20]
-           }
-        ],
+           } */
         chart: {
           height: 350,
           type: "line",
@@ -93,8 +100,11 @@ export class GraphistdespesafixComponent implements OnInit {
      // Fim constroi grafico
   }  
 
-  ngOnInit(): void {
-   
+  async ngOnInit(){
+    await this.httpClient.get(this.REST_API_ULT_12_DESP)
+    .subscribe(( data: any[]) => {
+        this.ult12desp = data;
+        console.log(this.ult12desp.length);  
+    }); 
   }
-
 }
