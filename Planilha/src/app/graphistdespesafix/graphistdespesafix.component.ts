@@ -48,15 +48,15 @@ export class GraphistdespesafixComponent implements OnInit {
      console.log(data);
      // Construindo Grafico
      this.chartOptions = {
-        series: [], /*
+        series: [
            {
              name: data.name,
-             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+             data: [500, 257.69, 360, 1567.88, 120, 268, 300, 432, 1480]
            }
-           /*,{
+           ,{
              name: 'Media',
-             data: [20,20,20,20,20,20,20,20,20]
-           } */
+             data: [520,520,520,520,520,520,520,520,520]
+           }],
         chart: {
           height: 350,
           type: "line",
@@ -68,9 +68,9 @@ export class GraphistdespesafixComponent implements OnInit {
           enabled: false
         },
         stroke: {
-           width: [5,7,5],
+           width: [4,7,5],
            curve: "straight",
-           dashArray: [0,8,5]
+           dashArray: [0,8,1]
         },
         title: {
           text: "Historico dos ultimos 12 meses(média)",
