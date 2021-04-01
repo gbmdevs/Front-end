@@ -42,69 +42,94 @@ export class GraphistdespesafixComponent implements OnInit {
   // Variaveis de Trabalho
   ult12desp      = [];
   valores12desp  = [];
+  histdespfixa   = [];
+
+  
+
+  // Indexador
+  i = 0;
+  divisao: any   = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: graphData,
                                        private httpClient : HttpClient){
      console.log(data);
-     // Construindo Grafico
-     this.chartOptions = {
-        series: [
-           {
-             name: data.name,
-             data: [500, 257.69, 360, 1567.88, 120, 268, 300, 432, 1480]
-           }
-           ,{
-             name: 'Media',
-             data: [520,520,520,520,520,520,520,520,520]
-           }],
-        chart: {
-          height: 350,
-          type: "line",
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-           width: [4,7,5],
-           curve: "straight",
-           dashArray: [0,8,1]
-        },
-        title: {
-          text: "Historico dos ultimos 12 meses(média)",
-          align: "left"
-        },
-        grid: {
-          row: {
-            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-            opacity: 0.5
-          }
-        },
-        xaxis: {
-          categories: [
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro"
-          ]
-        }
-
-     }
-     // Fim constroi grafico
+    
   }  
 
   async ngOnInit(){
     await this.httpClient.get(this.REST_API_ULT_12_DESP)
-    .subscribe(( data: any[]) => {
-        this.ult12desp = data;
-        console.log(this.ult12desp.length);  
+    .subscribe(( histdespfixa: any[]) => {
+       // Construindo Grafico
+     this.chartOptions = {
+      series: [
+         {
+           name: this.data.name,
+           data: []
+         }, 
+         {
+           name: 'Media',
+           data: []
+         } 
+        ],
+      chart: {
+        width: "100%",
+        height: 380,
+        type: "line",
+        parentHeightOffset: 15,
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+         width: [4,7,5],
+         curve: "straight",
+         dashArray: [0,8,1]
+      },
+      title: {
+        text: "Historico dos ultimos 12 meses(média)",
+        align: "left"
+      },
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: []
+      }
+
+   }
+   // Fim constroi grafico
+        this.histdespfixa = histdespfixa;
+        var somatorio = 0;
+        this.divisao = 0;
+        for(this.i=0; this.i < histdespfixa.length ; this.i++){
+          // Compor a Media de Historico 
+          this.chartOptions.series[0].data.push(
+            this.histdespfixa[this.i].valorDespesaFixa
+          )
+
+          this.chartOptions.xaxis.categories.push(
+            this.histdespfixa[this.i].dataDespesaFixa
+          )
+          
+          somatorio =+ this.histdespfixa[this.i].valorDespesaFixa
+          this.divisao  = somatorio / this.i;
+          /*
+          this.chartOptions.series[1].data.push(
+            this.divisao
+          )
+          /*
+
+          this.chartOptions.xaxis.categories.push(
+            this.histdespfixa[this.i].dataDespesaFixa
+          ) */
+          console.log(this.chartOptions.series[0].data);
+        } 
     }); 
   }
 }
