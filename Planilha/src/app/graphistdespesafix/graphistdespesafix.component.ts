@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'; 
 
 import {
   ChartComponent,
@@ -44,6 +44,16 @@ export class GraphistdespesafixComponent implements OnInit {
   valores12desp  = [];
   histdespfixa   = [];
 
+  // Requisição Busca Historico de Despesasfixas
+  requiDespfixa = 
+   {
+    idExpenses: 0,
+    titleExpenses: "teste do Angular",
+    valueExpenses: 0.00,
+    dueDate: "0000-00-00",
+    sitPayment: "N" 
+   }
+  ;
   
 
   // Indexador
@@ -56,8 +66,11 @@ export class GraphistdespesafixComponent implements OnInit {
     
   }  
 
-  async ngOnInit(){
-    await this.httpClient.get(this.REST_API_ULT_12_DESP)
+  async ngOnInit(){ 
+
+    this.requiDespfixa.titleExpenses = this.data.name;
+
+    await this.httpClient.post(this.REST_API_ULT_12_DESP, this.requiDespfixa)
     .subscribe(( histdespfixa: any[]) => {
        // Construindo Grafico
      this.chartOptions = {
@@ -106,7 +119,7 @@ export class GraphistdespesafixComponent implements OnInit {
    // Fim constroi grafico
         this.histdespfixa = histdespfixa;
         var somatorio = 0;
-        this.divisao = 0;
+        this.divisao = 750
         for(this.i=0; this.i < histdespfixa.length ; this.i++){
           // Compor a Media de Historico 
           this.chartOptions.series[0].data.push(
@@ -117,18 +130,15 @@ export class GraphistdespesafixComponent implements OnInit {
             this.histdespfixa[this.i].dataDespesaFixa
           )
           
-          somatorio =+ this.histdespfixa[this.i].valorDespesaFixa
-          this.divisao  = somatorio / this.i;
-          /*
-          this.chartOptions.series[1].data.push(
-            this.divisao
-          )
-          /*
+          somatorio += this.histdespfixa[this.i].valorDespesaFixa 
+          
+          
+        this.divisao = somatorio / (this.i + 1);
+        this.divisao = this.divisao.toFixed(2); 
+        this.chartOptions.series[1].data.push(
+          this.divisao
+        ) 
 
-          this.chartOptions.xaxis.categories.push(
-            this.histdespfixa[this.i].dataDespesaFixa
-          ) */
-          console.log(this.chartOptions.series[0].data);
         } 
     }); 
   }
