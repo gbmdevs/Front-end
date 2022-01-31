@@ -1,0 +1,15 @@
+<h1>Animal List</h1>
+
+<ul>
+    <li *ngFor="let animal of animals$">
+        <div><span>Id: </span>{{animal.id}}</div>
+        <div><span>Nome: </span>{{animal.name}}</div>
+    </li>
+</ul>
+
+<!--
+<ul>
+    <li *ngFor="let animal of animals$ | async">
+        <a [routerLink]="['/animals', animal.name]"></a>
+    </li>
+</ul>-->
