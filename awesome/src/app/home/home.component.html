@@ -1,39 +1,13 @@
 <!-- Cards -->
 <div class="cardBox">
-    <div class="card">
+    <div *ngFor="let resumo of resumo" class="card" >
         <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Diário</div>
+            <div class="cardName">{{resumo.titleTypeSpent}}</div>
+            <div class="numbers">{{resumo.valueSpent | currency:'R$ '}}</div>
+            
         </div>
         <div class="iconBx">
             <ion-icon name="eye-outline"></ion-icon>
-        </div>
-    </div>
-    <div class="card">
-        <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Vendas</div>
-        </div>
-        <div class="iconBx">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
-        </div>
-    </div>
-    <div class="card">
-        <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Resumo</div>
-        </div>
-        <div class="iconBx">
-            <ion-icon name="cart-outline"></ion-icon>
-        </div>
-    </div>
-    <div class="card">
-        <div>
-            <div class="numbers">R$ 1,504</div>
-            <div class="cardName">Combustivel</div>
-        </div>
-        <div class="iconBx">
-            <ion-icon name="cart-outline"></ion-icon>
         </div>
     </div>
 </div>
@@ -42,7 +16,7 @@
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Despesas Fixas</h2>
-                        <a href="#" class="btn">Ver todas</a>
+                        <a (click)="openDialog('gastos','')" class="btn">Adicionar Gastos</a>
                     </div>
                     <table>
                         <thead>
