@@ -5,6 +5,10 @@ import {Container, Form} from'./styles';
 
 import Logo from '../../assets/airbnb.svg';
 
+//import {useNavigate } from 'react-router-dom';
+
+
+
 class Login extends Component {
     state = {
         email: "",
@@ -14,6 +18,7 @@ class Login extends Component {
     
 handleSignIn = async e => {
     console.log("Envior")
+    //const navigate = useNavigate();
     e.preventDefault();
     const { email,senha} = this.state;
     if(!email || !senha){
@@ -21,7 +26,8 @@ handleSignIn = async e => {
     }else{
         try{
             const response = await api.post("/login",{email,senha});
-            console.log(response);
+            console.log(response);            
+            //useNavigate.navigate("/");
         }catch(err){
             console.log(err);
             this.setState({error: "Houve um problema na autenticação"});
