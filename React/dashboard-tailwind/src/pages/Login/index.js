@@ -1,33 +1,38 @@
 import React, { Component } from "react";
 
-import api from "../../services/api";
+//import api from "../../services/api";
 import {Container, Form} from'./styles'; 
 
 import Logo from '../../assets/airbnb.svg';
 
-//import {useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
+class  Login extends Component {
+    
 
-
-class Login extends Component {
     state = {
         email: "",
         senha: "",
         error: ""
     };
+
+    teste = () => {
+        
+         let navigate = useNavigate();
+         navigate('/dashboard');
+    }
     
 handleSignIn = async e => {
     console.log("Envior")
-    //const navigate = useNavigate();
     e.preventDefault();
     const { email,senha} = this.state;
     if(!email || !senha){
         this.setState({error: "Preenche email e senha para continuar."});
     }else{
         try{
-            const response = await api.post("/login",{email,senha});
-            console.log(response);            
-            //useNavigate.navigate("/");
+            //const response = await api.post("/login",{email,senha});
+            //console.log(response);            
+            this.teste();
         }catch(err){
             console.log(err);
             this.setState({error: "Houve um problema na autenticação"});
