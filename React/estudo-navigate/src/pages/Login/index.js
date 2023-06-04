@@ -4,11 +4,11 @@ import Logo from '../../assets/airbnb.svg';
 import {Container, Form} from './styles';
 import api from "../../services/api";
 
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginPage = () => {
-   //const navigate = useNavigate(); 
+   const navigate = useNavigate(); 
 
    const [formData,setFormData] = useState({
         email: '',
@@ -25,24 +25,21 @@ const LoginPage = () => {
         e.preventDefault();
         try{
             if(!formData.email || !formData.senha){
-                console.log("entrou")
                 setFormData({...formData, error: 'Email/Senha não preenchidos'});
                 setTimeout(() => {
                     setFormData({ ...formData, error: '' });
                 }, 2000);
                 return;
             }else{
-                const response = await api.post("/login");
+                const response = await api.post("/login",formData);
                 console.log(response);
+                navigate("/dashboard");
             }
 
         }catch(err){
             setFormData({...formData, error: 'Houve um problema na autenticação'});
         }
      
-       console.log(formData);
-        //navigate("/dashboard");
-
    }
     
 
