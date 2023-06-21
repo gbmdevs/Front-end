@@ -1,9 +1,11 @@
 
 import React from "react"
 
+import {Container} from './styles';
+
 const DashboardPage = () => {
    return(
-    <div>Dashboard Pagina</div>
+    <Container>Dashboard Pagina</Container>
    )
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Logo from '../../assets/airbnb.svg';
 import {Container, Form} from './styles';
-import api from "../../services/api";
+//import api from "../../services/api";
 
 import { useNavigate } from "react-router-dom";
 
@@ -31,8 +31,8 @@ const LoginPage = () => {
                 }, 2000);
                 return;
             }else{
-                const response = await api.post("/login",formData);
-                console.log(response);
+                //const response = await api.post("/login",formData);
+                //console.log(response);
                 navigate("/dashboard");
             }
 
