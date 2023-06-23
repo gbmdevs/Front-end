@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Logo from '../../assets/airbnb.svg';
-import {Container, Form} from './styles';
+//import Logo from '../../assets/airbnb.svg';
+//import {Container, Form} from './styles';
 //import api from "../../services/api";
 
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 
-const LoginPage = () => {
+const LoginPage = () => {/*
    const navigate = useNavigate(); 
 
    const [formData,setFormData] = useState({
         email: '',
         senha: '',
         error: ''
-   })
-
+   })*/
+/*
    // Mudar os campos do formulario
    const handleFieldChange = (e) =>{
       setFormData({ ...formData, [e.target.name]: e.target.value})
@@ -40,10 +40,10 @@ const LoginPage = () => {
             setFormData({...formData, error: 'Houve um problema na autenticação'});
         }
      
-   }
+   }*/
     
 
-   return (     
+   return (     /*
     <Container>
       <Form onSubmit={handleLogin}>
         <img src={Logo} alt="Airbnb logo"/>
@@ -52,7 +52,7 @@ const LoginPage = () => {
         <input type="text" placeholder="Senha" name="senha" value={formData.senha} onChange={handleFieldChange}></input>
         <button type="submit">Entrar</button>
       </Form>
-    </Container>
+    </Container>*/ <h1>Test</h1>
    );
 
 };
