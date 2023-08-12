@@ -17,7 +17,7 @@ const Overview = () => {
        <div className="lg:flex lg:space-x-8 mt-4 sm:grid sm:gap-y-4">
          {Statements.map(statement => 
            <div key={statement.id} className="grid grid-cols-1 border border-gray-200 rounded-lg w-[360px] bg-white shadow-md">
-             <div className="flex space-x-4 items-center py-4">
+             <div className="flex space-x-4 items-center py-2">
                 <div className="text-gray-400 w-14 h-14 px-4 flex items-center">{statement.icon}</div>
                 <div className="flex flex-col">
                     <div className="text-sm text-gray-600 font-light">{statement.name}</div>

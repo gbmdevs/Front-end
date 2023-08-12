@@ -4,10 +4,10 @@ import { BanknotesIcon } from "@heroicons/react/24/outline";
 import {NumericFormat}  from 'react-number-format';
 
 const Transactions =  [
-  {id: 1,"name": "testes","amount": 7000,"status": "sucesso","date":"27/06/2023 18:34"},
-  {id: 2,"name": "testes"},
-  {id: 3,"name": "testes"},
-  {id: 4,"name": "testes"}
+  {id: 1,"name": "testes","amount": 7000.00,"status": "success","date":"27/06/2023 18:34"},
+  {id: 2,"name": "testes","amount": 7000.00,"status": "success","date":"27/06/2023 18:34"},
+  {id: 3,"name": "testes","amount": 7000.00,"status": "success","date":"27/06/2023 18:34"},
+  {id: 4,"name": "testes","amount": 7000.00,"status": "success","date":"27/06/2023 18:34"}
 ];
 
 
@@ -36,10 +36,13 @@ const Activity = () => {
                             </span>
                           </td>
                           <td className="grid justify-items-end"> 
-                          <NumericFormat prefix="R$ " value={transaction.amount} displayType="text" />
+                            <span className="text-gray-800 font-semibold"><NumericFormat prefix="R$ " value={transaction.amount} displayType="text" /></span>
                           </td>
                           <td className="grid justify-items-center"> 
-                               {transaction.status} 
+                               <span className={`${transaction.status === "success"
+                               ? "text-green-800 bg-green-200 " 
+                               : "text-gray-800 bg-gray-200"                              
+                              } rounded-lg px-2 py-px text-xs`}>{transaction.status} </span>
                           </td>
                           <td className="grid justify-items-end"> 
                                {transaction.date} 
