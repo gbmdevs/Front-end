@@ -10,7 +10,7 @@ const ProfilesButtons = [
 
 const ProfileBody = ({user}) => {
     return(
-      <div className="flex justify-between">
+      <div className="py-8 flex justify-between pb-0">
         <div className="flex space-x-4"> 
             <div>
                <h1 className="text-gray-900 font-bold text-2xl">

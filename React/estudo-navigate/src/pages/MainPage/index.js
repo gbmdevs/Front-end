@@ -7,17 +7,17 @@ import Dashboard from "../../components/Dashboard";
 
 const MainPage = () => {
    return(
-    <div className="flex items-center justify-center mx-auto  sm:max-w-7xl border border-gray-200 rounded">
-      <div className="grid grid-cols-3 space-x-4 w-full divide-x-2 w-full" >
-      <div className="col-span-1">      
+    <div className="flex items-center justify-center mx-auto  sm:max-w-7xl border 
+    border-gray-200 rounded-md overflow-hidden">
+      <div className="grid grid-cols-4 w-full">      
           <Sidebar/>
-      </div>
-          <div className="col-span-2">             
+
+          <div className="col-span-3">             
              <ProfileWrapper/>
              <Dashboard/>
           </div>
       </div>
-   </div>
+      </div>
    )
 }
 
