@@ -19,6 +19,7 @@ export default function Login({setToken}) {
          password
         });
         setToken(token);
+        console.log("tokne:"+token);
      }
      
   return(
