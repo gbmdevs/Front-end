@@ -7,7 +7,7 @@
     justify-content: space-between;
     height: 100%;
     padding: 25px 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; 
 }
 
 .left-section h2{
@@ -114,7 +114,7 @@
 }
 
 .main .separator{
-    margin: 35px 0 20px;
+    margin: 25px 0 20px;
     font-weight: 500;
     color: #364670;
 }
@@ -230,6 +230,7 @@
 
 .main table tbody tr td:last-child{
     border-radius: 0 14px 14px 0;
+    padding-bottom: 0;
 }
 
 .main table tbody tr td:first-child{
