@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Navigate, Routes } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
-import Estudos from './pages/Estudos';
+//import Estudos from './pages/Estudos';
 
 function App() {
 
@@ -17,8 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/login" element={<Login/>} />
-        <Route exact path="/dashboard" element={isAuthenticated() ? <Dashboard/>: <Navigate replace to="/login" />} />
-        <Route exact path="/estudos" element={isAuthenticated() ? <Estudos/>: <Navigate replace to="/login" />} />
+        <Route exact path="/dashboard" element={isAuthenticated() ? <Dashboard/>: <Navigate replace to="/login" />} /> 
         <Route path="*" element={<Navigate replace to="/login" />} />
       </Routes>
     </Router>

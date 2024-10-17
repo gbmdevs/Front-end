@@ -1,8 +1,27 @@
-import React from "react"; 
-import './Dashboard.css';
-import Estudos from "../../pages/Estudos";
+import React, { useEffect, useState } from "react"; 
+import './Dashboard.css'; 
+import axios from 'axios'; 
 
 const Dashboard = () =>{ 
+ 
+   const [data, setData] = useState([]);
+
+   useEffect(() =>{
+      const token = localStorage.getItem('token'); 
+         axios.get('http://localhost:5000/balance/my',{
+            headers: {
+               Authorization: `Bearer ${token}`
+             }
+         })
+         .then((response) => {
+           setData(Array.isArray(response.data) ? response.data : []); 
+           console.log(response.data)
+         })
+         .catch((error) => {
+           console.error('Erro ao buscar os dados:', error);
+         });         
+ 
+   }, []);
 
     return ( 
       <>
@@ -57,27 +76,14 @@ const Dashboard = () =>{
              <h3 class="separator">
                   Acesso rapido
              </h3>
-             <div class="quick-access">
-             <div class="item">
-                <i class="ri-image-fill"></i>
-                <h5>Pictures</h5>
-                <p>437/500 files</p>
-            </div>
-            <div class="item">
-                <i class="ri-file-3-line"></i>
-                <h5>Documents</h5>
-                <p>210/500 files</p>
-            </div>
-            <div class="item">
-                <i class="ri-music-2-fill"></i>
-                <h5>Sounds</h5>
-                <p>90/1000 files</p>
-            </div>
-            <div class="item">
-                <i class="ri-video-on-fill"></i>
-                <h5>Videos</h5>
-                <p>540/800 files</p>
-            </div>
+            
+             <div class="quick-access"> 
+
+            {data.map( account => <div class="item">
+               <i class="ri-bank-fill"></i>
+               <h5>{account.typeName}</h5>
+               <p>R$ {account.valueConsume}</p>
+            </div> )} 
             </div>
 
             <h3 class="separator">
@@ -106,7 +112,7 @@ const Dashboard = () =>{
                     <td class="extension">DOCX File</td>
                     <td class="size">5.4 MB</td>
                     <td class="more"><i class="ri-more-fill"></i></td>
-                  </tr> 
+                  </tr>                   
                   </tbody>
             </table>
 
@@ -122,8 +128,7 @@ const Dashboard = () =>{
             <i class="ri-arrow-down-s-line"></i>
         </div>
 
-        <div class="widgets"> 
-                <Estudos></Estudos>  
+        <div class="widgets">  
         </div>
         </div>
         </>
