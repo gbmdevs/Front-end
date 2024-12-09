@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~9.0.3",
     "@angular/router": "~9.0.3",
     "@material/dialog": "^6.0.0",
-    "apexcharts": "^3.23.1",
+    "apexcharts": "^3.24.0",
     "ng-apexcharts": "^1.5.6",
     "rxjs": "^6.5.5",
     "streamfilter": "^3.0.0",
