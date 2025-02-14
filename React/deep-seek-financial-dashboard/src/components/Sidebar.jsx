@@ -22,7 +22,7 @@ const Sidebar = () => {
             button
             key={text}
             component={Link}
-            to={text.toLowerCase()}
+            to={`/${text.toLowerCase()}`}
             sx={{
               '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
             }}

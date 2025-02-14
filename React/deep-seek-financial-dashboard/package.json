@@ -1,5 +1,5 @@
 {
-  "name": "deep-seek-financial-dashboard",
+  "name": "planilha-financeiro-pessoal",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
+    "axios": "^1.7.9",
     "chart.js": "^4.4.7",
     "cra-template": "1.2.0",
     "react": "^19.0.0",

@@ -1,13 +1,49 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
-import Reports from './pages/Reports';
+import Login from './pages/Login';
+import MinimalLayout from './layouts/MinimalLayout';
+import MainLayout from './layouts/MainLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
+    <Router> 
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <MinimalLayout>
+              <Login />
+            </MinimalLayout>
+          }/>
+          <Route element={<ProtectedRoute />}>
+          <Route
+            path="/"
+            element={
+              <MainLayout>
+                <Dashboard />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/expenses"
+            element={
+              <MainLayout>
+                <Expenses />
+              </MainLayout>
+            }
+          />
+                    <Route
+            path="/dashboard"
+            element={
+              <MainLayout>
+                <Dashboard />
+              </MainLayout>
+            }
+          />
+          </Route>
+      {/* 
       <div style={{ display: 'flex' }}>
         <Sidebar />
         <div style={{ flex: 1 }}>
@@ -19,7 +55,8 @@ function App() {
             <Route path="/reports" element={<Reports />} />
           </Routes>
         </div>
-      </div>
+      </div>*/} 
+      </Routes>
     </Router>
   );
 }
