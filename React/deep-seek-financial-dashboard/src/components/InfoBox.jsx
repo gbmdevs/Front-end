@@ -48,7 +48,12 @@ const InfoBox = ({ title, value }) => {
   const [categories,setCategories] = useState([]);
   const [date,setDate] = useState('');
   const [description,setDescription] = useState('');
-  const [amount,setAmount] = useState(0); 
+  //const [amount,setAmount] = useState(0); 
+
+  // FormDataa
+  const [formData, setFormData] = useState({
+      amount: 0
+  });
 
   const { showSnackbar } = useContext(SnackbarContext);
 
@@ -103,7 +108,7 @@ const InfoBox = ({ title, value }) => {
             "typeBalance": category,
             "dateConsume": date,
             "description": description,
-            "value": amount
+            "value": formData.amount
         }
         try{
            const response = await post(ROUTES.BALANCE.INSERT,data)
@@ -171,11 +176,20 @@ const InfoBox = ({ title, value }) => {
   margin="normal"
 /> 
 <DecimalInput
-            label="Valor"
-            value={amount}
-            onChange={(e) => { setAmount(e.target.value)}}  
-            margin="normal"
+value={formData.amount}
+label="Valor"
+onChange={(numericValue) => {
+  setFormData((prev) => ({
+    ...prev,
+    amount: numericValue,
+  }));
+}} 
+name="editableAmount"
+margin="normal"
+sx={{ mb: 2 }}
           />
+
+
           <TextField
             fullWidth
             label="Descrição"
