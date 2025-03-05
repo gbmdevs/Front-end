@@ -34,7 +34,7 @@ function App() {
               </MainLayout>
             }
           />
-                    <Route
+          <Route
             path="/dashboard"
             element={
               <MainLayout>
@@ -43,6 +43,7 @@ function App() {
             }
           />
           </Route>
+          
       {/* 
       <div style={{ display: 'flex' }}>
         <Sidebar />

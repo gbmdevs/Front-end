@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext,useEffect, useState } from 'react';
 import {
   Paper,
   Typography,
@@ -17,11 +17,15 @@ import {
   IconButton,
   InputAdornment,
   TablePagination,
+  MenuItem
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { ROUTES } from '../routes';
+import { get,post } from '../utils/api';
+import DecimalInput from './fields/DecimalInput';
+import { SnackbarContext } from '../context/SnackbarContext ';
 
 
 const InfoBox = ({ title, value }) => {
@@ -34,11 +38,19 @@ const InfoBox = ({ title, value }) => {
     { id: 6, category: 'Groceries', amount: 250, date: '2023-10-25' },
     { id: 7, category: 'Utilities', amount: 180, date: '2023-10-30' },
   ]);
- 
+  
   const [open, setOpen] = useState(false);
+  const [category,setCategory] = useState('');
+  const [insertOpen, setInsertOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [categories,setCategories] = useState([]);
+  const [date,setDate] = useState('');
+  const [description,setDescription] = useState('');
+  const [amount,setAmount] = useState(0); 
+
+  const { showSnackbar } = useContext(SnackbarContext);
 
   // Filter expenses based on category
   const filteredExpenses = expenses.filter((expense) =>
@@ -76,7 +88,51 @@ const InfoBox = ({ title, value }) => {
     setOpen(false);
   };
 
-  return (
+      // Close modal
+      const handleInsertOpen = () => {
+        setInsertOpen(true);
+      };
+  
+    // Close modal
+    const handleInsertClose = () => {
+      setInsertOpen(false);
+    };
+
+    const  insertBalance = async() =>{
+        const data = {
+            "typeBalance": category,
+            "dateConsume": date,
+            "description": description,
+            "value": amount
+        }
+        try{
+           const response = await post(ROUTES.BALANCE.INSERT,data)
+           showSnackbar("Registro incluido com sucesso.","success")
+           handleInsertClose()
+           console.log(response)
+        }catch(error){
+           showSnackbar(error.response.data.message,'error')          
+           console.log('Failed to insert balance:',error)
+        }   
+        
+    }
+    
+    useEffect(() => {
+      const fetchCategories = async () => {
+        try {
+          const data = await get(ROUTES.TYPES.TYPEBALANCE); 
+          setCategories(data);
+        } catch (error) {
+          console.error('Failed to fetch categories:', error);
+        }
+      };
+
+      fetchCategories();
+    },[]);
+
+
+
+   return (
     <>
       <Paper
         style={{ padding: '20px', marginBottom: '20px', cursor: 'pointer' }}
@@ -86,11 +142,67 @@ const InfoBox = ({ title, value }) => {
         <Typography variant="h4">{value}</Typography>
       </Paper>
 
+     {/*Botao para inclusao*/}
+     <Dialog open={insertOpen} onClose={handleInsertClose} fullWidth maxWidth="sm">
+          <DialogTitle>Adionar despesa</DialogTitle>
+          <DialogContent>
+
+          <TextField
+            select
+            fullWidth
+            label="Conta Corrente"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            margin="normal"
+          >
+            {categories.map((cat) => (
+              <MenuItem key={cat.type} value={cat.type}>
+                {cat.typeName}  
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+  fullWidth
+  label="Data do gasto"
+  type="date"
+  InputLabelProps={{ shrink: true }}  
+  value={date}
+  onChange={(e) => setDate(e.target.value)}
+  margin="normal"
+/> 
+<DecimalInput
+            label="Valor"
+            value={amount}
+            onChange={(e) => { setAmount(e.target.value)}}  
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            label="Descrição"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            margin="normal"/> 
+          </DialogContent>
+          <DialogActions>
+          <Button onClick={insertBalance} color="primary">
+            Adicionar
+          </Button>
+          <Button onClick={handleInsertClose} color="primary">
+            Fechar
+          </Button>
+        </DialogActions>
+     </Dialog>
+
+
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
         <DialogTitle>{title} - Extrato</DialogTitle>
+
         <DialogContent>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: '#333333' }}>
-            Expenses
+            Expenses        
+            <Button variant="contained" color="primary" onClick={handleInsertOpen}>
+                Adicionar despesa
+            </Button>
           </Typography>
 
           {/* Filter Bar */}

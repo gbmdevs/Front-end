@@ -1,5 +1,6 @@
-import React from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import React, {useContext} from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer,Button, TableHead, TableRow, Typography } from '@mui/material';
+import { SnackbarContext } from '../context/SnackbarContext ';
 
 const Expenses = () => {
   // Sample data for expenses
@@ -11,11 +12,20 @@ const Expenses = () => {
     { id: 5, category: 'Rent', amount: 1200, date: '2023-10-20' },
   ];
 
+  const { showSnackbar } = useContext(SnackbarContext);
+
+  const handleTestSnackbar = () => {
+    showSnackbar('Registro incluido com sucesso', 'success');
+  };
+
   return (
     <div style={{ padding: '20px' }}>
       <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: '#333333' }}>
         Expenses
       </Typography>
+      <Button variant="contained" color="primary" onClick={handleTestSnackbar}>
+        Test Snackbar
+      </Button>
       <Paper sx={{ boxShadow: 3 }}>
         <TableContainer>
           <Table>

@@ -1,7 +1,9 @@
-import {React} from 'react';
+import {React, useEffect, useState} from 'react';
 import { Grid, Paper, Typography} from '@mui/material';
 import MonthlySpendChart from '../components/MonthlySpendChart';
 import InfoBox from '../components/InfoBox';
+import { ROUTES } from '../routes';
+import { get } from '../utils/api';
 
 const Dashboard = () => {
   const monthlyData = {
@@ -16,6 +18,19 @@ const Dashboard = () => {
       },
     ],
   };
+  const [contaCorrente,setContaCorrente] = useState([]);
+
+  useEffect(() => {
+    const fetchContaCorrente = async () => {
+      try {
+        const data = await get(ROUTES.BALANCE.MY);
+        setContaCorrente(data);
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      }
+    };
+    fetchContaCorrente()
+  },[]);
 
   return (
     <div style={{ padding: '20px' }}>
@@ -29,9 +44,12 @@ const Dashboard = () => {
           </Paper>
         </Grid>
         <Grid item xs={12} md={4}>
-          <InfoBox title="Total Spent" value="$3,500" />
-          <InfoBox title="Average Monthly Spend" value="$583" />
-        </Grid>
+         {contaCorrente.map((saldo) => (
+            <InfoBox title={saldo.typeName} value={saldo.valueConsume} />
+         ))}
+
+        </Grid>      
+
       </Grid>
     </div>
   );
