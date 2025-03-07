@@ -9,7 +9,8 @@ export const ROUTES = {
     },
     BALANCE:{
           MY: `${BASE_URL}/balance/my`,
-          INSERT: `${BASE_URL}/balance`
+          INSERT: `${BASE_URL}/balance`,
+          LIST: `${BASE_URL}/balance`
     },
     TYPES:{
         TYPEBALANCE: `${BASE_URL}/types/balance`

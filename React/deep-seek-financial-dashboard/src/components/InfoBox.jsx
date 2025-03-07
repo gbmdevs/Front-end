@@ -30,13 +30,13 @@ import { SnackbarContext } from '../context/SnackbarContext ';
 
 const InfoBox = ({ title, value }) => {
   const [expenses, setExpenses] = useState([
-    { id: 1, category: 'Groceries', amount: 200, date: '2023-10-01' },
-    { id: 2, category: 'Utilities', amount: 150, date: '2023-10-05' },
+  /* { id: 1, category: 'Groceries', amount: 200, date: '2023-10-01' },
+      { id: 2, category: 'Utilities', amount: 150, date: '2023-10-05' },
     { id: 3, category: 'Entertainment', amount: 100, date: '2023-10-10' },
     { id: 4, category: 'Transport', amount: 50, date: '2023-10-15' },
     { id: 5, category: 'Rent', amount: 1200, date: '2023-10-20' },
     { id: 6, category: 'Groceries', amount: 250, date: '2023-10-25' },
-    { id: 7, category: 'Utilities', amount: 180, date: '2023-10-30' },
+    { id: 7, category: 'Utilities', amount: 180, date: '2023-10-30' },*/
   ]);
   
   const [open, setOpen] = useState(false);
@@ -59,7 +59,7 @@ const InfoBox = ({ title, value }) => {
 
   // Filter expenses based on category
   const filteredExpenses = expenses.filter((expense) =>
-    expense.category.toLowerCase().includes(filter.toLowerCase())
+    expense.description.toLowerCase().includes(filter.toLowerCase())
   );
 
   // Pagination handlers
@@ -132,7 +132,17 @@ const InfoBox = ({ title, value }) => {
         }
       };
 
+      const fetchBalanceList = async () => {
+        try {
+          const data = await get(ROUTES.BALANCE.LIST); 
+          setExpenses(data);
+        } catch (error) {
+          console.error('Failed to fetch categories:', error);
+        }
+      };
+
       fetchCategories();
+      fetchBalanceList();
     },[]);
 
 
@@ -214,7 +224,7 @@ sx={{ mb: 2 }}
         <DialogContent>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: '#333333' }}>
             Expenses        
-            <Button variant="contained" color="primary" onClick={handleInsertOpen}>
+            <Button variant="contained" color="primary"  onClick={handleInsertOpen}>
                 Adicionar despesa
             </Button>
           </Typography>
@@ -248,14 +258,15 @@ sx={{ mb: 2 }}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {paginatedExpenses.map((expense) => (
+                {paginatedExpenses.length > 0 ? (
+                  paginatedExpenses.map((expense) => (
                     <TableRow
                       key={expense.id}
                       sx={{ '&:hover': { backgroundColor: '#F5F5F5', cursor: 'pointer' } }}
                     >
-                      <TableCell>{expense.category}</TableCell>
-                      <TableCell>${expense.amount}</TableCell>
-                      <TableCell>{expense.date}</TableCell>
+                      <TableCell>{expense.description}</TableCell>
+                      <TableCell>R$ {expense.valueConsume}</TableCell>
+                      <TableCell>{expense.dateConsume}</TableCell>
                       <TableCell>
                         <IconButton
                           aria-label="edit"
@@ -277,7 +288,11 @@ sx={{ mb: 2 }}
                         </IconButton>
                       </TableCell>
                     </TableRow>
-                  ))}
+                  )) ): (<TableRow>
+                    <TableCell colSpan={4} align="center">
+                      No data has been found
+                    </TableCell>
+                  </TableRow>)}
                 </TableBody>
               </Table>
             </TableContainer>
