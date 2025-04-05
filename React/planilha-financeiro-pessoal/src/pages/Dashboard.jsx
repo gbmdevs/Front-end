@@ -32,26 +32,13 @@ const Dashboard = () => {
     fetchContaCorrente()
   },[]);
 
-  return (
-    <div style={{ padding: '20px' }}>
-      <Typography variant="h4" gutterBottom>
-        Dashboard
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
-          <Paper style={{ padding: '20px' }}>
-            <MonthlySpendChart data={monthlyData} />
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={4}>
-         {contaCorrente.map((saldo) => (
-            <InfoBox title={saldo.typeName} value={saldo.valueConsume} />
-         ))}
-
-        </Grid>      
-
-      </Grid>
+  return ( 
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+    <div>
+      <h1 className="text-3xl font-bold">Expense Dashboard</h1>
+      <p className="text-muted-foreground">Track and analyze your spending habits</p>
     </div>
+  </div>
   );
 };
 
