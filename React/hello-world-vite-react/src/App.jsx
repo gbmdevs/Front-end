@@ -1,14 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react' 
 import './App.css'
 import Index from './pages/Index'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Index />
+    <BrowserRouter>
+    <Layout>
+       <Routes> 
+          <Route path="/" element={<Index />} />
+       </Routes>
+    </Layout>
+    </BrowserRouter>
   )
 }
 
