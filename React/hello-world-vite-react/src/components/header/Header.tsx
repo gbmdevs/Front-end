@@ -8,7 +8,7 @@ const Header = () => {
     <header className="h-16 border-b px-4 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <SidebarTrigger />
-        <span className="font-bold text-xl">Expense Tracker</span>
+        <span className="font-bold text-xl">Financeiro</span>
       </div>
       
       <SearchBar />

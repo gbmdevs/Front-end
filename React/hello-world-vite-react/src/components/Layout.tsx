@@ -13,7 +13,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) =>{
     return(
-        <SidebarProvider defaultOpen={false}>
+        <SidebarProvider defaultOpen={true}>
         <div className="flex min-h-svh w-full">
           <Sidebar collapsible="offcanvas"> 
              <SidebarContentArea /> 

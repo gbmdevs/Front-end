@@ -20,7 +20,7 @@ const SidebarHeader = () => {
     <div className="flex items-center justify-between px-4 py-5">
       <div className="flex items-center gap-2 font-semibold text-xl">
         <CreditCard className="h-6 w-6" />
-        <span className="font-bold">Expense Tracker</span>
+        <span className="font-bold">Planilha Pessoal</span>
       </div>
     </div>
   );
@@ -28,12 +28,14 @@ const SidebarHeader = () => {
 
 const SidebarContentArea = () => {
   const { state } = useSidebar();
+
+  const version = "1.0.0";
   
   const menuItems = [
-    { name: 'Dashboard', icon: Home, path: '/' },
+    { name: 'Dashboard', icon: Home, path: '/' }/*,
     { name: 'Expenses', icon: CreditCard, path: '/expenses' },
     { name: 'Analytics', icon: PieChart, path: '/analytics' },
-    { name: 'Settings', icon: Settings, path: '/settings' }
+    { name: 'Settings', icon: Settings, path: '/settings' }*/
   ];
   
   return (
@@ -43,7 +45,7 @@ const SidebarContentArea = () => {
       </SidebarHeaderComponent>
       <SidebarContentComponent>
         <SidebarGroup>
-          <SidebarGroupLabel>Main Menu</SidebarGroupLabel>
+          <SidebarGroupLabel>Menu Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -66,7 +68,7 @@ const SidebarContentArea = () => {
       </SidebarContentComponent>
       <SidebarFooter className="group-data-[state=collapsed]:hidden">
         <div className="p-4 text-xs text-sidebar-foreground/50">
-          © 2025 Expense Tracker
+          © 2025 Versão {version}
         </div>
       </SidebarFooter>
     </>
