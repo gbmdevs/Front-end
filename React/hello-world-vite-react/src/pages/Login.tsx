@@ -28,14 +28,13 @@ const Login = () => {
         const response = await post<LoginResponse>("/auth/login", {
           email,
           password,
-        });
-  
-        // Assuming the API returns { token: "..." } in response.data
-        const token = response.data.token;
-        localStorage.setItem("token", token); // Store token in localStorage
+        }); 
+        console.log(response.token);
+        //const { token } = response.token;
+        //localStorage.setItem("token", token); // Store token in localStorage
   
         // Redirect to dashboard or another protected route
-        navigate("/dashboard");
+        navigate("/");
       } catch (err) {
         // Handle errors (e.g., wrong credentials or network issues)
         console.error("Login failed:", err);
@@ -49,14 +48,11 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">Login</CardTitle>
-          <CardDescription className="text-center">
-            Enter your credentials to access your dashboard
-          </CardDescription>
+          <CardTitle className="text-2xl text-center">Bem vindo</CardTitle> 
         </CardHeader>
         <form onSubmit={handleLogin}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
+          <CardContent className="space-y-2">
+            <div className="space-y-2 ">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -71,7 +67,7 @@ const Login = () => {
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
                 <a href="#" className="text-sm text-primary hover:underline">
-                  Forgot password?
+                  Esqueceu a senha?
                 </a>
               </div>
               <Input
@@ -95,9 +91,9 @@ const Login = () => {
         </form>
         <div className="text-center pb-6">
           <p className="text-sm text-muted-foreground">
-            Don't have an account?{" "}
+            Não possui cadastro?{" "}
             <a href="#" className="text-primary hover:underline">
-              Sign up
+              Cadastre-se
             </a>
           </p>
         </div>

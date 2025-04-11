@@ -6,9 +6,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 
 const isAuthenticated = () => {
-  // For demo purposes, let's just check localStorage
-  // In a real app, this would validate tokens, etc.
-  return true; // For now, let's consider users always authenticated to make testing easier
+  /*const token = localStorage.getItem('token');
+  console.log(token);
+  return (!token) ? false : true;*/
+  return true;
 };
 
 // Protected route component
@@ -23,12 +24,12 @@ const App = () => {
     
        <Routes> 
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={
-            <Layout>
+          <Route path="/" element={            
             <ProtectedRoute>
-               <Index />
-            </ProtectedRoute>
-            </Layout>
+              <Layout>
+                <Index />
+              </Layout>
+            </ProtectedRoute> 
           }/>
           <Route path="*" element={<Index />} />
        </Routes> 

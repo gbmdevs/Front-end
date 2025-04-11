@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { 
   BarChart3, 
   TrendingUp, 
@@ -68,93 +69,30 @@ const StatsSummary: React.FC<StatsSummaryProps> = ({
   );
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* 
-        <Card>
+    <div className="space-y-6"> 
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card 
+          className="cursor-pointer hover:shadow-md transition-all transform hover:-translate-y-1"
+          
+        >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Bank Balance</CardTitle> 
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalSpent.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">This month</p>
-          </CardContent>
-        </Card>*/}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Banco Inter</CardTitle> 
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${averageDaily.toLocaleString()}</div> 
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Top Category</CardTitle>
-            <BarChart3 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            {chartData.length > 0 ? (
-              <>
-                <div className="text-2xl font-bold">
-                  {chartData.sort((a, b) => b.amount - a.amount)[0].name}
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  ${chartData.sort((a, b) => b.amount - a.amount)[0].amount.toLocaleString()}
-                </p>
-              </>
-            ) : (
-              <div className="text-2xl font-bold">N/A</div>
-            )}
+            <div className="flex items-center gap-2"> 
+              <span className="text-2xl font-bold">3500</span>
+            </div>
+            <div className="flex items-center mt-2">
+             a
+            </div>
+            <div className="mt-2 flex items-center justify-between">
+              <Badge variant="outline" className="text-xs bg-primary/10">
+                View Details
+              </Badge> 
+            </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Payment Methods</CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Object.keys(paymentMethodData).length}</div>
-            <p className="text-xs text-muted-foreground">Different methods used</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Expenses by Category</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[200px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
-                <XAxis 
-                  dataKey="name" 
-                  tick={{ fontSize: 12 }} 
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis 
-                  tick={{ fontSize: 12 }} 
-                  tickLine={false} 
-                  axisLine={false}
-                  tickFormatter={(value) => `$${value}`}
-                />
-                <Tooltip 
-                  formatter={(value) => [`$${value}`, 'Amount']}
-                  labelStyle={{ fontWeight: 'bold' }}
-                />
-                <Bar 
-                  dataKey="amount" 
-                  radius={[4, 4, 0, 0]} 
-                  fill="hsl(var(--primary))" 
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
     </div>
   );
 };
