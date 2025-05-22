@@ -60,6 +60,7 @@ export const post = async <T = unknown>(
 export const get = async <T = unknown>(url: string): Promise<T> => {
   try {
     const response = await API.get<ApiResponse<T>>(url);
+    console.log("Usou get"+response)
     return response.data.data; // Adjust based on your API structure
   } catch (error) {
     console.error('GET request failed:', error);
