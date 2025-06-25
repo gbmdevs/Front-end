@@ -14,7 +14,7 @@ import {
   TrendingUp,
   Receipt
 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 
@@ -64,8 +64,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Toaster position="top-right" />
       
-      {/* Top navigation - Fixed */}
-      <header className="bg-white border-b border-gray-200 z-30 fixed top-0 left-0 right-0">
+      {/* Top navigation */}
+      <header className="bg-white border-b border-gray-200 z-30">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo and mobile menu button */}
@@ -205,10 +205,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         </div>
       </header>
       
-      {/* Main content area with top padding for fixed header */}
-      <div className="flex-grow flex pt-16">
-        {/* Sidebar for desktop - Fixed */}
-        <aside className="hidden lg:block lg:w-64 bg-white border-r border-gray-200 fixed left-0 top-16 bottom-0 overflow-y-auto">
+      <div className="flex-grow flex">
+        {/* Sidebar for desktop */}
+        <aside className="hidden lg:block lg:w-64 bg-white border-r border-gray-200">
           <div className="h-full flex flex-col px-4 py-6">
             <nav className="flex-1 space-y-1">
               {navItems.map((item) => (
@@ -246,7 +245,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 z-20 bg-gray-800 bg-opacity-50 top-16"
+              className="lg:hidden fixed inset-0 z-20 bg-gray-800 bg-opacity-50"
               onClick={toggleSidebar}
             >
               <motion.aside
@@ -303,8 +302,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           )}
         </AnimatePresence>
         
-        {/* Main content - with left margin for desktop sidebar */}
-        <main className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8 lg:ml-64">
+        {/* Main content */}
+        <main className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8">
           {children}
         </main>
       </div>

@@ -4,31 +4,45 @@ import { ArrowRight, CreditCard, Loader2 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { motion } from 'framer-motion';
 
-const LoginPage = () => {
-    const [email, setEmail] = useState('demo@example.com');
-    const [password, setPassword] = useState('password123');
-    const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-
-    const { login } = useAuth();
-    const navigate = useNavigate();
-
-     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
-        setIsLoading(true);
+const RegisterPage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { register } = useAuth();
+  const navigate = useNavigate();
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
     
-        try {
-          await login(email, password);
-          navigate('/dashboard');
-        } catch (err) {
-          setError((err as Error).message);
-        } finally {
-          setIsLoading(false);
-        }
-   };
-
-   return(
+    // Basic validation
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      await register(name, email, password);
+      navigate('/dashboard');
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  return (
     <div className="min-h-screen flex">
       {/* Left side - Form */}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -42,8 +56,8 @@ const LoginPage = () => {
             <div className="flex items-center justify-center mb-4">
               <CreditCard size={32} className="text-primary-600" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">Planilha Financeira</h1>
-            <p className="mt-2 text-gray-600">Log in to manage your finances</p>
+            <h1 className="text-2xl font-bold text-gray-900">ExpenseTrack</h1>
+            <p className="mt-2 text-gray-600">Create an account to manage your finances</p>
           </div>
           
           <div className="bg-white p-8 rounded-xl shadow-card">
@@ -53,6 +67,20 @@ const LoginPage = () => {
                   {error}
                 </div>
               )}
+              
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="input"
+                  required
+                />
+              </div>
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -69,19 +97,28 @@ const LoginPage = () => {
               </div>
               
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                    Senha
-                  </label>
-                  <a href="#" className="text-sm text-primary-600 hover:text-primary-500">
-                    Esqueceu a senha?
-                  </a>
-                </div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  Password
+                </label>
                 <input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="input"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                  Confirm Password
+                </label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="input"
                   required
                 />
@@ -96,7 +133,7 @@ const LoginPage = () => {
                   <Loader2 size={20} className="mr-2 animate-spin" />
                 ) : (
                   <span className="flex items-center justify-center">
-                    Acessar
+                    Create Account
                     <ArrowRight size={16} className="ml-2" />
                   </span>
                 )}
@@ -105,20 +142,17 @@ const LoginPage = () => {
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                Não possui conta?{' '}
-                <Link to="/register" className="text-primary-600 hover:text-primary-500 font-medium">
-                  Cadastre-se
+                Already have an account?{' '}
+                <Link to="/login" className="text-primary-600 hover:text-primary-500 font-medium">
+                  Log in
                 </Link>
               </p>
             </div>
           </div>
-          
         </motion.div>
-      </div>
-      
+      </div>      
     </div>
-   )
+  );
+};
 
-}
-
-export default LoginPage;
+export default RegisterPage;

@@ -2,13 +2,16 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { User } from '../types/User';
 
 interface AuthContextType {
-
-    
+  currentUser: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
+  logout: () => void;
 }
 
 // Create context with a default value
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
-
 
 // Custom hook to use the auth context
 export const useAuth = () => {
@@ -16,15 +19,24 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // Mock user data for demo purposes
   const mockUsers = [
     { id: '1', name: 'Demo User', email: 'demo@example.com', password: 'password123' }
   ];
-
+  
+  useEffect(() => {
+    // Check for saved user in local storage
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
+    }
+    setIsLoading(false);
+  }, []);
+  
+  // For demo purposes, we'll use local storage to simulate authentication
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     
@@ -45,8 +57,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     setIsLoading(false);
   };
-
-    const register = async (name: string, email: string, password: string) => {
+  
+  const register = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     
     // Simulate API call
@@ -68,14 +80,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     setIsLoading(false);
   };
-
-    
+  
   const logout = () => {
     setCurrentUser(null);
     localStorage.removeItem('currentUser');
   };
-
-    const value = {
+  
+  const value = {
     currentUser,
     isAuthenticated: !!currentUser,
     isLoading,
@@ -83,11 +94,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     register,
     logout
   };
-
-
+  
   return (
     <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
-}
+};

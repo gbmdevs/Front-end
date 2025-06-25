@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import DashboardLayout from '../../layout/DashboardLayout';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const ProtectedRoute = () => {
   const { isAuthenticated} = useAuth();
@@ -10,7 +10,9 @@ const ProtectedRoute = () => {
   }
 
   return (
-    <></>
+    <DashboardLayout>
+      <Outlet />
+    </DashboardLayout>
   )
 }
 
